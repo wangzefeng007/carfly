@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>房间选择界面</title>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/xuanzhe.css">
+    <!--bootstrap Css-->
+    <link href="__PUBLIC__/Home/css/bootstrap-v3.3.0.css" rel="stylesheet">
+    <link href="bootstrap-v3.3.0.css" rel="stylesheet">
+    <!--jquery-->
+    <!--<script src="https://cdn.bootcss.com/jquery/1.8.0/jquery.js"></script>-->
+    <script type="text/javascript" src="__PUBLIC__/main/jquery/jquery.3.2.1.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/main/jquery/font-size.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/main/bootstrap/bootstrap.js"></script>
+    <style>
+        .modal2 {
+            height: 23%;
+            margin-top: 0.8rem;
+            padding: 0 0.2rem 0 0.2rem;
+        }
+        .youxism{
+            width:25%;
+            height:0.6rem;
+            line-height: 0.6rem;
+            background: white;
+            position: absolute;
+            left:60%;
+            text-align: center;
+            border-radius:0.3rem;
+            border-color: #F18F4F;
+            color: #F18F4F;
+            background-color: #DA4C15;
+        }
+    </style>
+</head>
+<body>
+<div class="zhong" id="zhong">
+    <a href="{:U('home/Bj28/youxi1')}">
+        <div class="youxism" style="top:28.5%;">
+            游戏说明
+        </div>
+    </a>
+    <div class="modal2">
+        <a onclick=gobj28(1)>
+            <img src="__PUBLIC__/Home/images/zhuji.png">
+        </a>
+    </div>
+    <a  href="{:U('home/Bj28/youxi2')}">
+        <div  class="youxism" style=";top:57%;">
+            游戏说明
+        </div>
+    </a>
+    <div class="modal2">
+        <a onclick=gobj28(2)>
+            <img src="__PUBLIC__/Home/images/zhongji.png">
+        </a>
+    </div>
+    <a  href="{:U('home/Bj28/youxi3')}">
+        <div class="youxism" style="top:84%;">
+            游戏说明
+        </div>
+    </a>
+    <div class="modal2">
+        <a onclick=gobj28(3)>
+            <img src="__PUBLIC__/Home/images/gaoji.png">
+        </a>
+    </div>
+</div>
+<div style="width: 100%;height: 10%;position: fixed;left: 0;top: 90%;background-color:#ECECEC">
+    <a href="{:U('home/select/choice')}"><!--北京-->
+        <div  class="divcent"><img style="width:50%;margin:0.5rem auto;background-color: #FFCD41" src="__PUBLIC__/Home/img/hd/bank.png"></div>
+    </a>
+    <a href="{:U('home/select/index')}"><!--首页-->
+        <div  class="divcent"><img  style="width:40%;margin:0.2rem auto;"  src="__PUBLIC__/Home/img/hd/shouye.png"></div>
+    </a>
+    <a href="{:U('home/select/choice2')}"><!--加拿大-->
+        <div  class="divcent" ><img style="width:50%;margin:0.5rem auto;" src="__PUBLIC__/Home/img/hd/jianada.png"></div>
+    </a>
+</div>
+</body>
+<style>
+    .divcent{
+       width: 33%;
+        color: white;
+        font-size:0.4rem;
+        float: left;
+        width: 33% ;
+        height:200px;
+        text-align: center
+    }
+</style>
+<script type="text/javascript" src="__PUBLIC__/Home/js/public.js"></script>
+</html>

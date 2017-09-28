@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8"/>
+
+    <title>加拿大28</title>
+    <meta name="keywords" content="{:C('keyword')}">
+    <meta name="description" content="{:C('content')}">
+    <meta name="renderer" content="webkit">
+    <meta name="format-detection" content="telephone=no,email=no"/>
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+    <meta name="telephone=no" content="format-detection">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no"/>
+    <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+    <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+    <META HTTP-EQUIV="Expires" CONTENT="0">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/lib.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/index.css"/>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/menu/dist/mfb.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/menu/css/mfb.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/menu/Font-Awesome-3.2.1/css/font-awesome.css">
+    <!--<link rel="stylesheet" type="text/css" href="__PUBLIC__/menu/css/index.css" >-->
+
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    #Cocos2dGameContainer {
+        width: 100% !important;
+        height: 274px !important;
+    }
+
+    .zhuandongshuzi {
+        padding-top: 12px;
+        height: 77px;
+    }
+
+    .zhuandongshuzi ul li {
+        float: left
+    }
+
+    .zhuandongshuzi ul {
+        text-align: center;
+    }
+
+    .fuhao {
+        margin-top: 11px;
+        color: black
+    }
+
+    .shangtable {
+        padding-top: 30px;
+        text-align: center;
+        color: white;
+    }
+
+    .xiatable tr td {
+        text-align: center;
+        color: white;
+    }
+
+    /*下拉框展示期号css*/
+    .select-qihao {
+        margin: auto;
+        width: 100%;
+        height:2em;
+        line-height:2em;
+        background: #0c1733;
+        border: none;
+        color: #ff0;
+    }
+
+    .select-qihao option {
+        width: 100%;
+        font-size:1em;
+        line-height: 2em;
+    }
+</style>
+<body>
+<div class="tab-content">
+    <div class="tab-box" data-img='0' style=" background-repeat: no-repeat;background-size: 100% 200px;height:200px;background-image: url(/Public/Select/img/background.jpg);">
+        <!--<div style="color: white;"><span id="qishu">{$list[0].periodnumber}</span>期，开奖号码为：<span id="kaijiang"></span> 剩余时间：<span id="kaijiangtime"></span>///测试剩余时间:<span id="testtime"></span>///状态：：</div>-->
+        <table class="shangtable">
+            <tr style="height: 8px;"></tr>
+            <tr id="listdata2"></tr>
+        </table>
+        <div style="color:white;" class="zhuandongshuzi">
+            <ul style="    width: 196px; height: 60px;margin: 0 auto;">
+                <!--<span id="msg" style="position: absolute;margin-top: -29px;margin-left: -100px;color: red;"></span>-->
+                <li><img id="num1" class="numpt" width="40px" height="50px" src="__PUBLIC__/Home/img/image/0.png"></li>
+                <li class="fuhao">+</li>
+                <li><img id="num2" class="numpt" width="40px" height="50px" src="__PUBLIC__/Home/img/image/0.png"></li>
+                <li class="fuhao">+</li>
+                <li><img id="num3" class="numpt" width="40px" height="50px" src="__PUBLIC__/Home/img/image/0.png"></li>
+                <li class="fuhao">=</li>
+                <li><img id="num4" class="numpt" width="40px" height="50px" src="__PUBLIC__/Home/img/image/0.png"></li>
+            </ul>
+        </div>
+        <table class="xiatable" style="height: 46px;">
+            <tr id ="listdata">
+            </tr>
+        </table>
+    </div>
+    <div  style="background: #0c1733;padding-bottom: .1rem;color: #fff">
+        <foreach name="list" item="vo">
+        <span   class="shuzi shuzi_5" style="margin:0 0 0 3%;display: inline-block;
+    width: .18rem;
+    height: .18rem;
+    text-align: center;
+    line-height: .18rem;
+    border-radius: 50%;background: #B28C25">{$vo.zonghe}</span>
+        </foreach>
+        <span style="margin-left: 5%">近10期</span>
+    </div>
+    <!--<select class="select-qihao">-->
+        <!--<table>-->
+            <!--<foreach name="list" item="vo">-->
+                <!--<option>-->
+                    <!--<tr class="xiala-tr">-->
+                        <!--<td>-->
+                            <!--<span>第</span><span style="color: red">{$vo.periodnumber}</span><span>期</span>-->
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<?php-->
+					   <!--$number =($vo['awardnumbers']);-->
+					   <!--$numbers =str_replace(",","+",$number);-->
+						<!--?>-->
+                            <!--&lt;!&ndash;数字&ndash;&gt;-->
+                            <!--<span class="shuzi shuzi_{$t}">{$numbers}</span>-->
+                            <!--&lt;!&ndash;总和&ndash;&gt;-->
+                            <!--<span>=</span><span  class="shuzi shuzi_5">{$vo.zonghe}</span>-->
+                        <!--</td>-->
+                        <!--&lt;!&ndash;大 小 双 单&ndash;&gt;-->
+                        <!--<td>-->
+                            <!--<span  class="tm cl-red">{$vo.dxds}</span>-->
+                        <!--</td>-->
+                    <!--</tr>-->
+                <!--</option>-->
+            <!--</foreach>-->
+        <!--</table>-->
+    <!--</select>-->
+    <div class="tab-box wz" data-img='1'>
+        <table border="" cellspacing="" cellpadding="">
+            <thead>
+            <tr>
+                <th>期号</th>
+                <th>开奖时间</th>
+                <th>开奖号码</th>
+                <th>总和</th>
+                <th>单双</th>
+                <th>大小</th>
+                <th>极值</th>
+            </tr>
+            </thead>
+            <tbody>
+            <volist name="list" id="vo">
+                <tr>
+                    <td>{$vo.periodnumber}</td>
+                    <td>{$vo.awardtime|strtotime|date="Y.m.d",###}<br />{$vo.awardtime|strtotime|date="H:i:s",###}</td>
+
+                    <td>
+                        <?php
+					   $number =($vo['awardnumbers']);
+					   $numbers = explode(",", $number);
+						?>
+                        <volist name="numbers" id = "t" >
+                        <span class="shuzi shuzi_{$t}">{$t}</span>
+                        </volist>
+                    </td>
+                    <td><span class="shuzi shuzi_5">{$vo.zonghe}</span></td>
+                    <td><span class="shuzi shuzi_3">{$vo.danshuang}</span></td>
+                    <td class="cl-red">{$vo.dxds}</td>
+                    <td class="txt-al-c ft-sz-0">
+                     <if condition="strtoupper($vo['jz']) eq '非极值'"><span class="tm cl-blue2">{$vo.jz}</span>
+                        <else /><span class="tm cl-red">{$vo.jz}</span>
+                     </if>
+                    </td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+  <!--悬浮菜单-->
+<ul id="menu" class="mfb-component--br mfb-zoomin" data-mfb-toggle="hover"
+    style="margin-bottom:18%;margin-right:85%;">
+    <li class="mfb-component__wrap">
+        <!--<a href="#" class="mfb-component__button&#45;&#45;main">-->
+            <!--<i class="mfb-component__main-icon&#45;&#45;resting icon-reorder"></i>-->
+            <!--<i class="mfb-component__main-icon&#45;&#45;active icon-reorder"></i>-->
+        <!--</a>-->
+        <ul class="">
+            <li>
+                <a href="{:U('Home/Jnd28/rule')}" data-bt="0" target="myIframe"
+                   class="mfb-component__button--child tab-bt">
+                    <!--<i class="mfb-component__child-icon">动画</i>-->
+                    <span style="line-height: 40px;margin-left: 7px">规则</span>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/Jnd28/trend')}" data-bt="1" target="myIframe"
+                   class="mfb-component__button--child tab-bt">
+                    <!--<i class="mfb-component__child-icon">动画</i>-->
+                    <span style="line-height: 40px;margin-left: 7px">走势</span>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/Jnd/record')}?t=1" target="myIframe" class="mfb-component__button--child">
+                    <span style="line-height: 40px;margin-left: 7px">记录</span>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/Circle/kefu')}" target="myIframe"
+                   class="mfb-component__button--child">
+                    <span style="line-height: 40px;margin-left: 7px">客服</span>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/Jnd/index')}" target="myIframe" class="mfb-component__button--child">
+
+                    <span style="line-height: 40px;margin-left: 7px">刷新</span>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/Jnd28/activity')}" target="myIframe" class="mfb-component__button--child">
+
+                    <span style="line-height: 40px;margin-left: 7px">活动</span>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/select/index')}" class="mfb-component__button--child">
+
+                    <span style="line-height: 40px;margin-left: 7px">首页</span>
+                </a>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+
+
+ <!--&lt;!&ndash;底部的发送栏目&ndash;&gt;-->
+
+<div class="main-box">
+    <div class="leftRight">
+        <span style="width: 10px"></span>
+        <div class="nav" style="display: none">
+            <div class="portrait no"><img src="{$userinfo.headimgurl}" style="width: 20px;height: 20px"/></div>
+            <div style="text-align: center">id:{$userinfo.id}</div>
+            <a href="{:U('Home/select/index')}" class="portrait"  data-height="20"><img
+                    src="/Public/Home/img/zhuye.png"></a>
+            <a href="{:U('Home/Circle/kefu')}" class="portrait" target="myIframe" data-height='100'><img
+                    src="__PUBLIC__/Home/img/0.png"/></a>
+            <a href="{:U('Home/Jnd/jincai')}" class="portrait" target="myIframe" data-height='240'><img
+                    src="__PUBLIC__/Home/img/1.png"/></a>
+            <a href="javascript:showBg();" class="portrait active" target="myIframe" data-height="100"><img
+                    src="/Public/Home/img/8.png"></a>
+            <a href="{:U('Home/Jnd/record')}?t=1" class="portrait" target="myIframe" data-height='150'><img
+                    src="__PUBLIC__/Home/img/2.png"/></a>
+            <div class="portrait tab-bt" data-bt="0"><img src="__PUBLIC__/Home/img/7_01.png"/></div>
+            <div class="portrait tab-bt" data-bt="1"><img src="__PUBLIC__/Home/img/4.png"/></div>
+            <a onclick="javascript:window.location.href=window.location.href;" class="portrait shuax" target="myIframe"><img
+                    src="__PUBLIC__/Home/img/5.png"/></a>
+            <a href="{:U('Home/Dan/rule')}" class="portrait" target="myIframe" data-height='720'><img
+                    src="__PUBLIC__/Home/img/6.png"/></a>
+            <a href="{:U('Home/Circle/tuiguang')}" class="portrait" target="myIframe"><img
+                    src="__PUBLIC__/Home/img/9.png"/></a>
+        </div>
+        <div class="content">
+            <!--iframe-->
+            <div class="iframewp" style="-webkit-overflow-scrolling:touch; overflow: auto;height:450px">
+                <iframe id="myIframe" name="myIframe"></iframe>
+            </div>
+        </div>
+        <!--<div style="height: 45px;-->
+            <!--width: 100%;-->
+            <!--background-color: white;-->
+            <!--position: fixed;-->
+            <!--bottom: 0px;-->
+            <!--border-top: 1px solid #eaeaea;">-->
+            <!--<div style="-->
+            <!--width: 40%;-->
+            <!--float: left;-->
+              <!--">-->
+                <!--<div style="border: 1px solid black">-->
+                <!--<input id="textarea" type="text" required value="ee"/>-->
+                    <!--<button onclick="onSubmit(); return false;"style="float: right">发送</button>-->
+                <!--</div>-->
+                <!--<button onclick="test()">test too jincai </button>-->
+            <!--</div>-->
+        <!--</div>-->
+    </div>
+</div>
+
+<style>
+    #dialog {
+        background-color: #fff;
+        border: 5px solid rgba(0, 0, 0, 0.4);
+        height: 250px;
+        left: 50%;
+        margin: -200px 0 0 -100px;
+        padding: 1px;
+        position: fixed !important; /* 浮动对话框 */
+        position: absolute;
+        top: 50%;
+        width: 200px;
+        z-index: 5;
+        border-radius: 5px;
+        display: none;
+    }
+
+    #dialog p {
+        margin: 0 0 12px;
+        height: 24px;
+        line-height: 24px;
+        background: #CCCCCC;
+    }
+
+    #dialog p.close {
+        text-align: right;
+        padding-right: 10px;
+    }
+
+    #dialog p.close a {
+        color: #fff;
+        text-decoration: none;
+    }
+</style>
+
+<div id="dialog" style="">
+        <a href="#" onclick="closeBg();">关闭</a>
+    </p>
+    <div>长按二维码添加客服</div>
+    <div><img src="__ROOT__/Uploads{$kefu.kefu}"></div>
+</div>
+<script src='//cdn.bootcss.com/jquery/1.11.3/jquery.js'></script>
+<script src="__PUBLIC__/layer/layer.js"></script>
+<script src="__PUBLIC__/menu/dist/mfb.js"></script>
+<script type="text/javascript">
+    var tt;
+    var agoqishu;
+    var agonum;
+    var numdata;
+    var game_time, flag = 0;
+    var $t, fp, at, xz;//全局变量
+    var kjdata=0, kjqishu=0;
+    //自动运行
+    $(function () {
+        loadinfo();  //运行自动获取时间
+
+    });
+    //获取服务器上的时间
+    function chufaloadiinfo() {
+
+        loadinfo();
+    }
+    function loadinfo(){
+        clearTimeout($t);
+        $.ajax(
+            {
+                type: "post",
+                dataType: 'JSON',
+                url: "{:U('Home/api/getJnd28')}",
+                success: function (data) {
+                    game_time = data['next']['awardTimeInterval']/1000;
+                    $('#testtime').html(game_time);
+                    if (kjdata==0) {
+                        kjdata =data['current']['awardNumbers'];
+                        kjqishu = data['current']['periodNumber'];
+                        //附上开奖结果
+                        updatenum(data['current']['awardNumbers']);
+                        $('#qishu').html(data['next']['periodNumber']);
+                        var allnum = data['current']['awardNumbers'];
+                        var strs= new Array(); //定义一数组
+                        strs=allnum.split(","); //字符分割
+                        //总和
+                        var zonghe  = Number(strs[0])+Number(strs[1])+Number(strs[2]);
+                        //单双
+                        var jiou = "";
+                        (zonghe%2==0)?jiou = "双":jiou = "单";
+                        //判断极值
+                        var jizhi = "";
+                        if(0<=zonghe&& zonghe<=5){
+                            jizhi = "极小值";
+                        }
+                        if(zonghe>5&&zonghe<22){
+                            jizhi = "非极值";
+                        }
+                        if(zonghe>=22&&zonghe<=27){
+                            jizhi = "极大值";
+                        }
+                        //判断小单小双大单大双
+                        var daxiaodanshuang = "";
+                        if(0<=zonghe&&zonghe<=14){
+                            if(jiou == "双"){
+                                daxiaodanshuang = "小双";
+                            }
+                            if(jiou =="单"){
+                                daxiaodanshuang = "小单";
+                            }
+                        }else {
+                            if(jiou =="双"){
+                                daxiaodanshuang = "大双";
+                            }
+                            if(jiou =="单"){
+                                daxiaodanshuang = "大单";
+                            }
+                        }
+
+                        if(data['current']['periodNumber'] == null){
+
+                        }else {
+                            $('#listdata2').html(
+                                '<td><img src="__PUBLIC__/Home/img/image/logo.png"></td>'+
+                                '<td>加拿大28<br><span id="qishu" style="color:#ffe619">'+data['next']['periodNumber']+'</span></td>'+
+                                '<td>下一期开奖<br><span id="kaijiangtime" style="color:#ffe619;"></span></td>')
+                            $('#listdata').html(
+                                '<td style="    border-right: 1px solid #5b8fa2;">当前<br><span style="color:#ffe619">'+data['current']['periodNumber']+'</span></td>'+
+                                '<td style="    border-right: 1px solid #5b8fa2;">总和<span  style="color:#ffe619"><br>'+zonghe+'</span></td>'+
+                                '<td style="    border-right: 1px solid #5b8fa2;">'+jiou+'</td>'+
+                                '<td style="    border-right: 1px solid #5b8fa2;">'+daxiaodanshuang+'</td>'+
+                                '<td>'+jizhi+'</td>')
+                        }
+
+                    }
+                    if(data['current']['periodNumber'] == null){
+                        //为空不做判断
+                        console.log("号码不同");
+                        autotime();
+
+                    }else {
+                        if (kjqishu != data['current']['periodNumber']) {
+
+                            kjdata =data['current']['awardNumbers'];
+                            kjqishu = data['current']['periodNumber'];
+                            //附上开奖结果
+                            updatenum(data['current']['awardNumbers']);
+                            var allnum = data['current']['awardNumbers'];
+                            var strs= new Array(); //定义一数组
+                            strs=allnum.split(","); //字符分割
+                            var zonghe  = Number(strs[0])+Number(strs[1])+Number(strs[2]);
+                            var jiou = "";
+                            if(zonghe%2==0){
+                                jiou = "双";
+                            }else{
+                                jiou = "单"
+                            }
+                            //判断极值
+                            var jizhi = "";
+                            if(0<=zonghe&& zonghe>=5){
+                                jizhi = "极小值";
+                            }
+                            if(zonghe>5&&zonghe<22){
+                                jizhi = "非极值";
+                            }
+                            if(zonghe>=22&&zonghe<=27){
+                                jizhi = "极大值";
+                            }
+                            //判断小单小双大单大双
+                            var daxiaodanshuang = "";
+                            if(0<=zonghe&&zonghe<14){
+                                if(jiou == "双"){
+                                    daxiaodanshuang = "小双";
+                                }
+                                if(jiou =="单"){
+                                    daxiaodanshuang = "小单";
+                                }
+                            }else {
+                                if(jiou =="双"){
+                                    daxiaodanshuang = "大双";
+                                }
+                                if(jiou =="单"){
+                                    daxiaodanshuang = "大单";
+                                }
+                            }
+                            $('#qishu').html(data['next']['periodNumber']);
+                            $('#listdata2').html(
+                                '<td><img src="__PUBLIC__/Home/img/image/logo.png"></td>'+
+                                '<td>加拿大28<br><span id="qishu" style="color:#ffe619">'+data['next']['periodNumber']+'</span></td>'+
+                                '<td>下一期开奖<br><span id="kaijiangtime" style="color:#ffe619;"></span></td>')
+                            $('#listdata').html(
+                                '<td style="    border-right: 1px solid #5b8fa2;">当前<br><span style="color:#ffe619">'+data['current']['periodNumber']+'</span></td>'+
+                                '<td style="    border-right: 1px solid #5b8fa2;">总和<span  style="color:#ffe619"><br>'+zonghe+'</span></td>'+
+                                '<td style="    border-right: 1px solid #5b8fa2;">'+jiou+'</td>'+
+                                '<td style="    border-right: 1px solid #5b8fa2;">'+daxiaodanshuang+'</td>'+
+                                '<td style="    border-right: 1px solid #5b8fa2;">'+jizhi+'</td>')
+                        }
+                    }
+
+                    autotime();
+                }
+            }, 'json');
+        $t = setTimeout("loadinfo()", 5000);
+    }
+    function autotime() {
+        clearTimeout(fp);
+        endtime(game_time);
+        fp = setTimeout("autotime()", 1000);
+    }
+
+    function endtime(iTime) {
+        if (iTime <= 0 && iTime>= -200) {
+            clearTimeout(fp);
+            $('#kaijiangtime').html('正在开奖，请等待');
+            var $images = $(".numpt");
+            $images.attr('src', "__PUBLIC__/Home/img/image/lhj.gif");
+        } else {
+            iTime--;
+            if (iTime > {:C('jnd28_status_off')} && iTime>= -200) {
+                $('#kaijiangtime').text(iTime);
+                $('#msg').html('游戏开启请投注');
+            }
+            if (iTime <= {:C('jnd28_status_off')} && iTime>= -200) {
+                $('#kaijiangtime').html('正在开奖，请等待');
+                var $images = $(".numpt");
+                $images.attr('src', "__PUBLIC__/Home/img/image/lhj.gif");
+            }
+            game_time = iTime;
+        }
+    }
+    //更新信息让图片停止
+    function updatenum(bb) {
+        var strs= new Array(); //定义一数组
+        strs=bb.split(","); //字符分割
+        $('#num1').attr("src", "__PUBLIC__/Home/img/image/" + strs[0] + ".png");
+        $('#num2').attr("src", "__PUBLIC__/Home/img/image/" + strs[1] + ".png");
+        $('#num3').attr("src", "__PUBLIC__/Home/img/image/" + strs[2] + ".png");
+        $('#num4').attr("src", "__PUBLIC__/Home/img/image/" + (Number(strs[0])+Number(strs[1])+Number(strs[2])) + ".png");
+
+    }
+    function showBg() {
+        $("#dialog").show();
+    }
+    //获取屏幕的高度，填补ifreme的高度
+    var height =0  ;
+    var ifermeheight =0;
+    height = document.body.scrollHeight;
+    //  ifreme 的高度：
+    ifermeheight = height - 190 - 20;
+    //关闭灰色 jQuery 遮罩
+    function closeBg() {
+        $("#dialog").hide();
+    }
+    $(function () {
+        /*------- 声明对象、参数 -----------*/
+        var wp = $('.main-box .leftRight'),
+            nav = wp.children('.nav'),
+            navli = nav.children('a'),
+            con = wp.children('.content'),
+            iframe = wp.find('.iframewp');
+        var num_hei = 0,
+            h = 100;
+        /*绑定事件*/
+        navli.on('click', function () {
+            var _ = $(this);
+            navli.removeClass('active').filter(_).addClass('active');
+            h = get_dataHei(_);
+            alertHei();
+            navli.filter('.shuax').attr('href', _.attr('href'));
+            navli.filter('.shuax').attr('data-height', _.attr('data-height'));
+        });
+        /*初始化*/
+        //navli.filter('.active').eq(0).children().trigger('click');
+        navli.eq(2).children().trigger('click');
+        windowAlter(alertHei);
+        /*公共方法*/
+        function get_dataHei(obj) {
+            var _ = obj;
+            if (typeof(_.attr('data-height')) != "undefined" && $.trim(_.attr('data-height')).length > 0 && parseInt($.trim(_.attr('data-height'))) > 100) {
+                return parseInt($.trim(_.attr('data-height')));
+            } else {
+                return 100;
+            }
+        }
+
+        function alertHei() {
+            num_hei = nav.outerHeight();
+            num_hei = num_hei * (h / 100);
+            con.css({
+                'height': ifermeheight + 'px'
+            });
+            num_hei = num_hei - parseFloat(con.css('padding-top')) - parseFloat(con.css('padding-bottom'));
+            if (con.children('.top').is(':visible')) {
+                var iframe_hei = num_hei - con.children('.top').outerHeight(true);
+            } else {
+                var iframe_hei = num_hei;
+            }
+            iframe.css({
+                'height': ifermeheight + 'px'
+            });
+        }
+
+        function getIndexing(obj) {
+            var i = $.inArray(obj[0], navli);
+            return 'go' + (i + 1);
+        }
+
+        function windowAlter(fun) {
+            fun();
+            $(window).resize(fun);
+        }
+
+        function imgloadstate(imgs, fun, Time) {
+            var ys, boole,
+                time = Time || 500,
+                img = imgs[0];
+
+            function pd() {
+                boole = img.complete;
+                if (boole) {
+                    fun();
+                    clearTimeout(ys);
+                } else {
+                    ys = setTimeout(pd, time);
+                }
+            }
+
+            pd();
+        }
+
+        /*-------------选项卡（hover切换）----------*/
+        tab_hover($('.leftRight .nav'), $('.tab-content'));
+        function tab_hover(bt, content) {
+            bt.each(function (i, e) {
+                var _ = $(e);
+                var _c = $(content);
+                var _bt = _.children('.tab-bt'),
+                    _box = _c.children('.tab-box');
+                _bt.on('click', function () {
+                    if (!$(this).hasClass('on')) {
+                        var j = $(this).data('bt'),
+                            _img = _box.filter('[data-img=' + j + ']');
+                        if (_img.length > 0) {
+                            _bt.removeClass('on');
+                            $(this).addClass('on');
+                            _box.stop(true, false).hide().removeClass('on').filter('[data-img=' + j + ']').addClass('on').fadeIn().css("display", "block");
+                        }
+                    }
+                });
+            })
+        };
+//        泡泡类型的动画和文字切换 - ------------------------
+        tab2_hover($('.mfb-component__list li '), $('.tab-content'));
+        function tab2_hover(bt, content) {
+            bt.each(function (i, e) {
+                var _ = $(e);
+                var _c = $(content);
+                var _bt = _.children('.tab-bt'),
+                    _box = _c.children('.tab-box');
+                _bt.on('click', function () {
+                    if (!$(this).hasClass('on')) {
+                        var j = $(this).data('bt'),
+                            _img = _box.filter('[data-img=' + j + ']');
+                        if (_img.length > 0) {
+                            _bt.removeClass('on');
+                            $(this).addClass('on');
+                            _box.stop(true, false).hide().removeClass('on').filter('[data-img=' + j + ']').addClass('on').fadeIn().css("display", "block");
+                        }
+                    }
+                });
+            })
+        };
+    })
+</script>
+
+<!--视频-->
+<script src="__PUBLIC__/main/mbase.js"></script>
+<script src="__PUBLIC__/main/cocos2d.js"></script>
+<script type="text/javascript">
+    var acontainer = $('#acontainer');
+    var hasData = false;
+    function AddList(data) {
+        if (data.length > 0) {
+            hasData = true;
+            acontainer.html(data[0].data);
+            acontainer.show();
+        }
+    }
+    function beforeStartRunning() {
+        acontainer.hide();
+    }
+
+    function afterEndRunning() {
+        if (hasData) acontainer.show();
+    }
+</script>
+
+<!--微信分享-->
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script>
+    // 微信JSSDK异常处理
+    wx.error(function (e) {
+        console.log(e);
+    });
+    // 注入JSSDK配置参数，默认开启所有接口权限
+    wx.config({$options | json_encode
+    })
+    ;
+    // 当JSSDK初始化完成后，再执行相关操作
+    wx.ready(function () {
+        var host = document.domain + "?t=" + '{$userinfo.id}';
+        //分享到朋友圈
+        wx.onMenuShareTimeline({
+            title: '加拿大赛车pk10', // 分享标题
+            link: host, // 分享链接
+            imgUrl: '{$userinfo.qrcode}', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        //分享给朋友
+        wx.onMenuShareAppMessage({
+            title: '加拿大赛车pk10', // 分享标题
+            desc: '加拿大赛车pk10', // 分享描述
+            link: host, // 分享链接
+            imgUrl: '{$userinfo.qrcode}', // 分享图标
+            type: '', // 分享类型,music、video或link，不填默认为link
+            dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        //分享到QQ
+        wx.onMenuShareQQ({
+            title: '加拿大赛车pk10', // 分享标题
+            desc: '加拿大赛车pk10', // 分享描述
+            link: host, // 分享链接
+            imgUrl: '{$userinfo.qrcode}', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        //分享到腾讯微博
+        wx.onMenuShareWeibo({
+            title: '加拿大赛车pk10', // 分享标题
+            desc: '加拿大赛车pk10', // 分享描述
+            link: host, // 分享链接
+            imgUrl: '{$userinfo.qrcode}', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+        //分享到QQ空间
+        wx.onMenuShareQZone({
+            title: '加拿大赛车pk10', // 分享标题
+            desc: '加拿大赛车pk10', // 分享描述
+            link: host, // 分享链接
+            imgUrl: '{$userinfo.qrcode}', // 分享图标
+            success: function () {
+                // 用户确认分享后执行的回调函数
+            },
+            cancel: function () {
+                // 用户取消分享后执行的回调函数
+            }
+        });
+    });
+</script>
+<!--微信分享-->
+</body>
+
+</html>

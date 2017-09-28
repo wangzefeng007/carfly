@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		
+		<title>{:C('sitename')}</title>
+		<meta name="keywords" content="{:C('keyword')}">
+		<meta name="description" content="{:C('content')}">
+
+		<meta name="renderer" content="webkit">
+		<meta name="format-detection" content="telephone=no,email=no"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0">
+		<meta name="telephone=no" content="format-detection">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="format-detection" content="telephone=no" />
+
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Cache-Control" CONTENT="no-cache">
+		<META HTTP-EQUIV="Expires" CONTENT="0">
+
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/lib.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/index.css" />
+	</head>
+	<style>
+		#Cocos2dGameContainer{
+			width: 100% !important;
+			height: 274px !important;
+		}
+	</style>
+
+	<body>
+		<div class="tab-content">
+			
+			<div class="tab-box dh" data-img='0' style="height: 274px;background-color: #ccc;">
+				<div id="canvas" style="text-align: center; font-size: 0">
+					<canvas id="gameCanvas" width="1136" height="640" style="width:117%;height:274px"></canvas>
+				</div>
+			</div>
+			
+			<div class="tab-box wz" data-img='1'>
+				<table border="" cellspacing="" cellpadding="">
+					<thead>
+						<tr>
+							<th>期号</th>
+							<th>开奖时间</th>
+							<th>开奖号码</th>
+							<th>特码</th>
+						</tr>
+					</thead>
+					<tbody>
+						<volist name="list" id="vo">
+							<tr>
+								<td>{$vo.periodnumber}</td>
+								<td>{$vo.awardtime|strtotime|date="Y.m.d",###}<br />{$vo.awardtime|strtotime|date="H:i:s",###}</td>
+								<td class="ft-sz-0">
+									<?php
+										$number = unserialize($vo['number']);
+										$lh = unserialize($vo['lh']);
+										?>
+									<volist name="number" id="t" key="k">
+										<span class="shuzi shuzi_{$t}">{$t}</span>
+									</volist>
+									<br />
+									<strong class="longhu cl-red">{$lh[0]}</strong>
+									<strong class="longhu cl-blue2">{$lh[1]}</strong>
+									<strong class="longhu cl-red">{$lh[2]}</strong>
+									<strong class="longhu cl-blue2">{$lh[3]}</strong>
+									<strong class="longhu cl-blue2">{$lh[4]}</strong>
+								</td>
+								<td class="txt-al-c ft-sz-0">
+									<span class="tm">{$vo.tema}</span>
+									<span class="tm cl-blue2">{$vo.tema_dx}</span>
+									<span class="tm cl-red">{$vo.tema_ds}</span><br />
+									<span class="tm cl-blue2">{$vo.zx}</span>
+									<span class="tm">{$vo.tema_dw}</span>
+								</td>
+							</tr>
+						</volist>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+		<div class="main-box">
+			<div class="leftRight">
+				<div class="nav">
+					<div class="portrait no"><img src="{$userinfo.headimgurl}" /></div>
+					<div style="text-align: center">id:{$userinfo.id}</div>
+					<a href="{:U('Home/select/index')}" class="portrait"  data-height="20"><img
+							src="/Public/Home/img/zhuye.png"></a>
+					<a href="{:U('Home/Circle/kefu')}" class="portrait active" target="myIframe" data-height='100'><img src="__PUBLIC__/Home/img/0.png" /></a>
+					<a href="{:U('Home/Circle/jincai')}" class="portrait" target="myIframe" data-height='240'><img src="__PUBLIC__/Home/img/1.png" /></a>
+					<a href="javascript:showBg();" class="portrait active" target="myIframe" data-height="100"><img src="/Public/Home/img/8.png"></a>
+					<a href="{:U('Home/Circle/record')}?t=1" class="portrait" target="myIframe" data-height='150'><img src="__PUBLIC__/Home/img/2.png" /></a>
+					<div class="portrait tab-bt" data-bt="0"><img src="__PUBLIC__/Home/img/7_01.png" /></div>
+					<div class="portrait tab-bt" data-bt="1"><img src="__PUBLIC__/Home/img/4.png" /></div>
+					<a onclick="javascript:window.location.href=window.location.href;" class="portrait shuax" target="myIframe"><img src="__PUBLIC__/Home/img/5.png" /></a>
+					<a href="{:U('Home/Circle/rule')}" class="portrait" target="myIframe" data-height='720'><img src="__PUBLIC__/Home/img/6.png" /></a>
+					<a href="{:U('Home/Circle/tuiguang')}" class="portrait" target="myIframe"><img src="__PUBLIC__/Home/img/9.png"/></a>
+				</div>
+				<div class="content">
+					<!--iframe-->
+					<div class="iframewp">
+						<iframe id="myIframe" name="myIframe"></iframe>
+					</div>
+				</div>
+			</div>
+		</div>
+		<style>
+			#dialog {
+				background-color: #fff;
+				border: 5px solid rgba(0,0,0, 0.4);
+				height: 250px;
+				left: 50%;
+				margin: -200px 0 0 -100px;
+				padding: 1px;
+				position: fixed !important; /* 浮动对话框 */
+				position: absolute;
+				top: 50%;
+				width: 200px;
+				z-index: 5;
+				border-radius: 5px;
+				display: none;
+			}
+			#dialog p {
+				margin: 0 0 12px;
+				height: 24px;
+				line-height: 24px;
+				background: #CCCCCC;
+			}
+			#dialog p.close {
+				text-align: right;
+				padding-right: 10px;
+			}
+			#dialog p.close a {
+				color: #fff;
+				text-decoration: none;
+			}
+		</style>
+		<div id="dialog" style="display: none;">
+			<p class="close">
+				<a href="#" onclick="closeBg();">关闭</a>
+			</p>
+			<div>长按二维码添加客服</div>
+			<div><img src="__ROOT__/Uploads{$kefu.kefu}" style="width:100%;margin-bottom:10px;z-index:9999;"></div>
+		</div>
+		<script src='//cdn.bootcss.com/jquery/1.11.3/jquery.js'></script>
+		<script src="__PUBLIC__/layer/layer.js"></script>
+		<script type="text/javascript">
+			function showBg() {
+				$("#dialog").show();
+			}
+			//关闭灰色 jQuery 遮罩
+			function closeBg() {
+				$("#dialog").hide();
+			}
+			$(function() {
+				/*------- 声明对象、参数 -----------*/
+				var wp = $('.main-box .leftRight'),
+					nav = wp.children('.nav'),
+					navli = nav.children('a'),
+					con = wp.children('.content'),
+					iframe = wp.find('.iframewp');
+				var num_hei = 0,
+					h = 100;
+				/*绑定事件*/
+				navli.on('click', function() {
+					var _ = $(this);
+					navli.removeClass('active').filter(_).addClass('active');
+					h = get_dataHei(_);
+					alertHei();
+					navli.filter('.shuax').attr('href', _.attr('href'));
+					navli.filter('.shuax').attr('data-height', _.attr('data-height'));
+				});
+				/*初始化*/
+				//navli.filter('.active').eq(0).children().trigger('click');
+				navli.eq(2).children().trigger('click');
+				windowAlter(alertHei);
+				/*公共方法*/
+				function get_dataHei(obj) {
+					var _ = obj;
+					if(typeof(_.attr('data-height')) != "undefined" && $.trim(_.attr('data-height')).length > 0 && parseInt($.trim(_.attr('data-height'))) > 100) {
+						return parseInt($.trim(_.attr('data-height')));
+					} else {
+						return 100;
+					}
+				}
+
+				function alertHei() {
+					num_hei = nav.outerHeight();
+					num_hei = num_hei * (h / 100);
+					con.css({
+						'height': num_hei + 'px'
+					});
+					num_hei = num_hei - parseFloat(con.css('padding-top')) - parseFloat(con.css('padding-bottom'));
+					if(con.children('.top').is(':visible')) {
+						var iframe_hei = num_hei - con.children('.top').outerHeight(true);
+					} else {
+						var iframe_hei = num_hei;
+					}
+					iframe.css({
+						'height': iframe_hei + 'px'
+					});
+				}
+
+				function getIndexing(obj) {
+					var i = $.inArray(obj[0], navli);
+					return 'go' + (i + 1);
+				}
+
+				function windowAlter(fun) {
+					fun();
+					$(window).resize(fun);
+				}
+
+				function imgloadstate(imgs, fun, Time) {
+					var ys, boole,
+						time = Time || 500,
+						img = imgs[0];
+
+					function pd() {
+						boole = img.complete;
+						if(boole) {
+							fun();
+							clearTimeout(ys);
+						} else {
+							ys = setTimeout(pd, time);
+						}
+					}
+					pd();
+				}
+
+				/*-------------选项卡（hover切换）----------*/
+				tab_hover($('.leftRight .nav'), $('.tab-content'));
+
+				function tab_hover(bt, content) {
+					bt.each(function(i, e) {
+						var _ = $(e);
+						var _c = $(content);
+						var _bt = _.children('.tab-bt'),
+							_box = _c.children('.tab-box');
+
+						_bt.on('click', function() {
+							if(!$(this).hasClass('on')) {
+								var j = $(this).data('bt'),
+									_img = _box.filter('[data-img=' + j + ']');
+								if(_img.length > 0) {
+									_bt.removeClass('on');
+									$(this).addClass('on');
+									_box.stop(true, false).hide().removeClass('on').filter('[data-img=' + j + ']').addClass('on').fadeIn().css("display", "block");
+								}
+							}
+						});
+					})
+				};
+			})
+		</script>
+		
+		<!--视频-->
+		<script src="__PUBLIC__/main/mbase.js"></script>
+		<script src="__PUBLIC__/main/cocos2d.js"></script>
+		
+		<script type="text/javascript">
+			var acontainer = $('#acontainer');
+			var hasData = false;
+	
+			function AddList(data) {
+				if(data.length > 0) {
+					hasData = true;
+					acontainer.html(data[0].data);
+					acontainer.show();
+				}
+			}
+			function beforeStartRunning() {
+				acontainer.hide();
+			}
+	
+			function afterEndRunning() {
+				if(hasData) acontainer.show();
+			}
+		</script>
+		
+		<!--微信分享-->
+		<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script>
+			// 微信JSSDK异常处理
+		    wx.error(function(e){
+		        console.log(e);
+		    });
+		    // 注入JSSDK配置参数，默认开启所有接口权限
+		    wx.config({$options|json_encode});
+		    // 当JSSDK初始化完成后，再执行相关操作
+		    wx.ready(function(){
+				var host=document.domain+"?t="+'{$userinfo.id}';
+				//分享到朋友圈
+		        wx.onMenuShareTimeline({
+				    title: '北京赛车pk10', // 分享标题
+				    link: host, // 分享链接
+				    imgUrl: '{$userinfo.qrcode}', // 分享图标
+				    success: function () { 
+				        // 用户确认分享后执行的回调函数
+				    },
+				    cancel: function () { 
+				        // 用户取消分享后执行的回调函数
+				    }
+				});
+				//分享给朋友
+				wx.onMenuShareAppMessage({
+				    title: '北京赛车pk10', // 分享标题
+				    desc: '北京赛车pk10', // 分享描述
+				    link: host, // 分享链接
+				    imgUrl: '{$userinfo.qrcode}', // 分享图标
+				    type: '', // 分享类型,music、video或link，不填默认为link
+				    dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+				    success: function () { 
+				        // 用户确认分享后执行的回调函数
+				    },
+				    cancel: function () { 
+				        // 用户取消分享后执行的回调函数
+				    }
+				});
+				//分享到QQ
+				wx.onMenuShareQQ({
+				    title: '北京赛车pk10', // 分享标题
+				    desc: '北京赛车pk10', // 分享描述
+				    link:host, // 分享链接
+				    imgUrl: '{$userinfo.qrcode}', // 分享图标
+				    success: function () { 
+				       // 用户确认分享后执行的回调函数
+				    },
+				    cancel: function () { 
+				       // 用户取消分享后执行的回调函数
+				    }
+				});
+				//分享到腾讯微博
+				wx.onMenuShareWeibo({
+				    title: '北京赛车pk10', // 分享标题
+				    desc: '北京赛车pk10', // 分享描述
+				    link:host, // 分享链接
+				    imgUrl: '{$userinfo.qrcode}', // 分享图标
+				    success: function () { 
+				       // 用户确认分享后执行的回调函数
+				    },
+				    cancel: function () { 
+				        // 用户取消分享后执行的回调函数
+				    }
+				});
+				//分享到QQ空间
+				wx.onMenuShareQZone({
+				    title: '北京赛车pk10', // 分享标题
+				    desc: '北京赛车pk10', // 分享描述
+				    link:host, // 分享链接
+				    imgUrl: '{$userinfo.qrcode}', // 分享图标
+				    success: function () { 
+				       // 用户确认分享后执行的回调函数
+				    },
+				    cancel: function () { 
+				        // 用户取消分享后执行的回调函数
+				    }
+				});
+		    });
+		</script>
+		<!--微信分享-->
+		
+		
+		
+		
+	</body>
+
+</html>

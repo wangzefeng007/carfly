@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html id="iframe">
+	<head>
+		<meta charset="UTF-8">
+
+		<title>{:C('sitename')}</title>
+		<meta charset="utf-8">
+		<meta name="viewport"
+			  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+		<meta name="keywords" content=""/>
+		<meta name="description" content=""/>
+		<link rel="stylesheet" href="__PUBLIC__/Select/css/amazeui.min.css">
+		<link rel="stylesheet" href="__PUBLIC__/Select/css/wap.css?2">
+		<link rel="stylesheet" href="__PUBLIC__/Select/css/animate.min.css">
+
+		<style>
+			.imgbox{
+				padding-top: 10px;
+			}
+			.dd {
+				display: none;
+			}
+
+			.cur {
+				display: block;
+				background: #1e1e1e;
+
+			}
+
+			.tr-tr th {
+				text-align: center;
+				border: 1px solid black;
+			}
+
+			.tr-tr {
+				border: 1px solid #BABABA;
+			}
+
+			.tr-tr td {
+				border: 1px solid #BABABA;
+			}
+
+			.table-self {
+				text-align: center;
+			}
+
+			.tablego table tr:nth-child(odd) {
+				background: #6a6e71;
+			}
+
+			.tablego table {
+				background-color: #919294;
+				color: white;
+				text-shadow: 0 0 2px black;
+			}
+		</style>
+		<style type="text/css">
+			body {
+				padding-bottom: 57px;
+			}
+
+			#ft {
+				position: fixed;
+				bottom: 0;
+				height: 57px;
+				width: 100%;
+				text-align: center;
+				background: #343434;
+				z-index: 9999;
+			}
+
+			#ft a {
+				width: 33.3%;
+				display: block;
+				float: left;
+				text-align: center;
+				font-size: 14px;
+				color: #b0b0b0;
+				text-decoration: none;
+			}
+
+			#ft a:hover, .ft a.a {
+				/*background: #1e1e1e;*/
+				/*color: white;*/
+			}
+
+			#ft a span {
+				display: block;
+				width: 50px;
+				height: 57px;
+				margin: 0 auto;
+			}
+
+			#ft a em {
+				display: block;
+				width: 34px;
+				height: 30px;
+				margin: 3px auto;
+				background: url(./themes/default/images/nav.png) no-repeat 0 0;
+			}
+
+			#ft a .n2 {
+				background-position: 0 -44px;
+			}
+
+			#ft a .n3 {
+				background-position: 0 -88px;
+			}
+
+			#ft a .n4 {
+				background-position: 0 -132px;
+				position: relative;
+			}
+
+			#ft a .n5 {
+				background-position: 0 -176px;
+			}
+
+			#ft a .n4 b {
+				position: absolute;
+				top: 5px;
+				right: -18px;
+				display: block;
+				height: 18px;
+				width: 18px;
+				text-align: center;
+				line-height: 18px;
+				border-radius: 10px;
+				background: #C70600;
+				color: #fff;
+				font-style: normal;
+				text-indent: 1px;
+				font-size: 12px;
+				font-weight: 400;
+			}
+		</style>
+	</head>
+	<body>
+		<!--<div id="shjow" class="container" style="position:relative;width:85%;margin-top:10px;" tabindex="-1">-->
+			<!--<span style="font-weight:700;font-size:20px;margin-top:20px;margin-left:90px;float: left;">长按二维码添加客服</span>-->
+			<!--<img tabindex="-1" src="__ROOT__/Uploads{$kefu.kefu}" style="width:80%;margin: 0 auto 10px 22%"/>-->
+		<!--</div>-->
+		<!--上下分的弹窗开始-->
+		<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
+			<div class="am-modal-dialog">
+				<div class="am-modal-hd">请联系客服
+					<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
+				</div>
+				<div class="am-modal-bd">
+					<img src="__ROOT__/Uploads{$kefu.kefu}" style="width: 161px;">
+				</div>
+				长按添加客服
+			</div>
+		</div>
+		<button id="buttomq" data-am-modal="{target: '#doc-modal-1', closeViaDimmer: 0, width: 200, height: 225}"
+				style="float: right;margin-right:5px;
+                    color: white;background-color: #505050;" type="button"
+				class="am-btn  am-btn-xs am-round">上下分
+		</button>
+
+		<!--jq引入-->
+<script src='//cdn.bootcss.com/jquery/1.11.3/jquery.js'></script>
+		<link rel="stylesheet" href="__PUBLIC__/Select/css/font-awesome-4.7.0/css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/lib.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css"/>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/index.css"/>
+		<script src="__PUBLIC__/Select/js/jquery.min.js"></script>
+		<script src="__PUBLIC__/Select/js/amazeui.min.js"></script>
+		<script>
+            $(function () {
+
+                // 动态计算新闻列表文字样式
+                auto_resize();
+                $(window).resize(function () {
+                    auto_resize();
+                });
+                $('.am-list-thumb img').load(function () {
+                    auto_resize();
+                });
+
+                $('.am-list > li:last-child').css('border', 'none');
+                function auto_resize() {
+                    $('.pet_list_one_nr').height($('.pet_list_one_img').height());
+
+                }
+
+                $('.pet_nav_gengduo').on('click', function () {
+                    $('.pet_more_list').addClass('pet_more_list_show');
+                });
+                $('.pet_more_close').on('click', function () {
+                    $('.pet_more_list').removeClass('pet_more_list_show');
+                });
+                var now = new Date();
+                var number = now.getSeconds();
+                $('#yuanbao').html(Date.parse(new Date()) / 1000 - 1495572999);
+                $('#renshu').html(6841 + number);
+
+
+            });
+            $(document).ready(function () {
+                $("#ft a").click(function () {
+                    $("#ft a").eq($(this).index()).addClass("cur").siblings().removeClass('cur');
+                    $(".dd").hide().eq($(this).index()).show();
+                    //另一种方法: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on');
+
+                });
+            });
+
+		</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		<!--<div class="main-box">
+			<div class="top">
+				<input id="textarea" type="text" required/>
+				<button onclick="onSubmit(); return false;">发送</button>
+				<div class="info">
+					<p>剩余点数：<span id="sy">{$userinfo.points}</span>点</p>
+					<p>线上人数：<span id="xs"></span>人</p>
+				</div>
+			</div>
+		</div>
+		<div id="load" style="text-align: center;font-size: 14px;">loading...</div>
+		<div class="chatting" style="display: none;">
+			<div class="chatting-li qtr blue">
+				<div class="portrait"><img src="/Public/main/img/system.jpg"/></div>
+				<div class="content">
+					<small><span class="name">客服</span><time>15:00:00</time></small>
+					<p>大傻蛋啥大所</p>
+				</div>
+			</div>
+			<div class="chatting-li blue">
+				<div class="portrait"><img src="/Public/main/img/system.jpg"/></div>
+				<div class="content">
+					<small><span class="name">客服</span><time>15:00:00</time></small>
+					<p>大傻蛋啥大所</p>
+				</div>
+			</div>
+		</div>-->
+	</body>
+</html>

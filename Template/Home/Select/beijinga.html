@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    .table{
+        width: 100%;
+    }
+    .table tr{
+        height:200px;
+        line-height:200px;
+    }
+    .div1{
+        width: 100%;
+        text-align: right;
+        border: 1px red solid;
+    }
+
+    a {
+        text-decoration: none;
+    }
+</style>
+<body>
+<table class="table">
+    <foreach name="room" item="user">
+        <tr>
+            <td>
+                <a href="http://test.carfly.com/Home/select/room?rid={$user.rid}">
+                    <div class="div1">
+                        {$user.beishu}
+                    </div>
+                </a>
+            </td>
+        </tr>
+    </foreach>
+</table>
+</body>
+</html>

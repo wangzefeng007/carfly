@@ -1,0 +1,95 @@
+﻿<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <meta name="keywords" content=""/>
+    <meta name="description" content=""/>
+    <link rel="stylesheet" href="__PUBLIC__/Select/css/amazeui.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/Select/css/wap.css?2">
+    <link rel="stylesheet" href="__PUBLIC__/Select/css/animate.min.css">
+
+    <title>首页</title>
+</head>
+
+<style>
+    .imgbox{
+        padding-top: 10px;
+    }
+    .dd {
+        display: none;
+    }
+
+    .cur {
+        display: block;
+        background: #1e1e1e;
+
+    }
+
+    .tr-tr th {
+        text-align: center;
+        border: 1px solid black;
+    }
+
+    .tr-tr {
+        border: 1px solid #BABABA;
+    }
+
+    .tr-tr td {
+        border: 1px solid #BABABA;
+    }
+
+    .table-self {
+        text-align: center;
+    }
+
+    .tablego table tr:nth-child(odd) {
+        background: #6a6e71;
+    }
+
+    .tablego table {
+        background-color: #919294;
+        color: white;
+        text-shadow: 0 0 2px black;
+    }
+</style>
+<!--微信分享-->
+<div class="am-panel-hd" style="background-color: rgb(0, 193, 179)">
+    <h4 class="am-panel-title" data-am-collapse="{parent: '#accordion', target: '#do-not-say-1'}"
+        style="color: white">
+        余额记录
+    </h4>
+</div>
+<center>
+<div style="margin: 0 auto;">
+    <center>
+<table style="width: 98%;">
+<tr class="tr-tr">
+<th>id</th>
+<th>时间</th>
+<th>分</th>
+<th>结算</th>
+<th>类型</th>
+</tr>
+<volist name="integral" id="data">
+<tr class="tr-tr">
+<td>{$data.id}</td>
+<td>{$data.time|date="m/d H:i",###}</td>
+<td>{$data.points}</td>
+<td>{$data.balance}</td>
+<td>
+<if condition="$data.type == 1">上分
+<else/>
+下分
+</if>
+</td>
+</tr>
+</volist>
+</table>
+    </center>
+</center>
+</div>
+
+</body>
+</html>

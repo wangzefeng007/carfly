@@ -1,0 +1,393 @@
+
+<div class="am-popup" id="my-popup-pk10" >
+    <div class="am-popup-inner">
+        <div class="am-popup-hd">
+            <h5 class="am-popup-title">pk10记录</h5>
+            <span data-am-modal-close
+                  class="am-close">&times;</span>
+        </div>
+        <div class="am-popup-bd">
+            <!--载入嵌入-->
+            <iframe src="{:U('Home/Circle/record')}?t=1" width="100%" height="400px">
+            </iframe>
+            <!--<table class="table-self">-->
+            <!--<tr class="tr-tr">-->
+            <!--<th>期号</th>-->
+            <!--<th>时间</th>-->
+            <!--<th>竞猜</th>-->
+            <!--<th>压注</th>-->
+            <!--<th>赚钱</th>-->
+            <!--<th>余额</th>-->
+            <!--<th>开奖</th>-->
+            <!--</tr>-->
+            <!--<volist name="pk10data" id="data">-->
+            <!--<tr class="tr-tr">-->
+            <!--<td>{$data.number}</td>-->
+            <!--<td>{$data.time|date="m/d H:i",###}</td>-->
+            <!--<td>{$data.jincai}</td>-->
+            <!--<td>{$data.del_points}</td>-->
+            <!--<td>{$data.add_points}</td>-->
+            <!--<td>{$data.balance}</td>-->
+            <!--<td>-->
+            <!--<if condition="$data.is_add == 1">是-->
+            <!--<else/>-->
+            <!--否-->
+            <!--</if>-->
+            <!--</td>-->
+            <!--</tr>-->
+            <!--</volist>-->
+            <!--</table>-->
+        </div>
+    </div>
+</div>
+<!--结束pk10个人游戏记录-->
+<div class="am-popup" id="my-popup-pk10-gz">
+    <div class="am-popup-inner">
+        <div class="am-popup-hd">
+            <h5 class="am-popup-title">pk10规则</h5>
+            <span data-am-modal-close
+                  class="am-close">&times;</span>
+        </div>
+        <div class="am-popup-bd">
+            <!--内容开始-->
+            <div class="regulation">
+                <h3 class="cl-red txt-al-c">【无限信誉北京赛车】</h3>
+                <div class="">
+                    <h4 class="cl-orange">【平台、游戏介绍】</h4>
+                    <p>大无限彩票为马尼拉solaire娱乐城、澳门威尼斯人娱乐城、新濠天地以及台湾捷豹控股大股东等大型企业注资联合经营，旗下最热门的项目包括【北京赛车PK10】。<span style="color:red;">北京赛车PK10：是经国家财政部批准，由北京福利彩票发行承销的中国福利彩其中一种；</span>每期开奖车号共十个,每个车号除了整合玩法，第1~10名、冠亚和值、冠亚组合分别为一个投注组，大小/单双/龙虎、车道数字、冠亚大小、冠亚特码、十球全接、特码区段。幸运飞艇：是马耳他共和国瓦莱塔福利联合委员会独家发行的一款高频彩，源于F1赛艇的彩票游戏；北京赛车PK10、幸运飞艇同以「1~10」十个号码作为开奖依据，完全公平公正公开，开奖透明，无法作弊！</p>
+                </div>
+                <div class="">
+                    <h4 class="cl-orange">【相关资料】</h4>
+                    <p>
+                        【国家福彩官网】http://www.cwl.gov.cn/<br />
+                        【官方APP下载】请直接搜索「北京赛车」<br/>
+                        【开奖时间】「白场」北京赛车PK10为每天上午09:07~晚上23:57止；每次投注时间约160秒，等待开奖时间约为1分钟，与官网完全同步。
+                    </p>
+                </div>
+                <div class="">
+                    <h4 class="cl-orange">【玩法】</h4>
+
+                    <h5 class="cl-blue">
+                        【1~10名猜大小单双】
+                        <p>第一名～第十名车号：开出之号码大于或等于6为大，小于或等于5为小。开出的号码偶数为双，号码奇数为单。</p>
+                    </h5>
+                    <p>
+                        ■赔率：含本{:C('dxds')}倍 <br />
+                        ■限额：20-20,000<br />
+                        ■格式：名次/大小单双/金额<br />
+                        <small>例：12345/双/100 = 1~5车道买双各$100 = 总$500</small>
+                    </p>
+
+
+                    <h5 class="cl-blue">
+                        【1~10名猜车号】
+                        <p>每一个车号为一投注组合，开奖结果「投注车号」对应所投「车道」视为中奖，其余情形视为不中奖。</p>
+                    </h5>
+                    <p>
+                        ■赔率：含本{:C('chehao')}倍<br />
+                        ■限额：20-10,000 <br />
+                        ■格式：名次/号码/金额<br />
+                        <small>例：12345/89/20 = 1~5车道的8号、9号各买$20 = 总$200</small>
+                        <small>例：1357/890/20 = 1.3.5.7车道的8号、9号、10号各买$20 = 总$240</small>
+                    </p>
+
+                    <h5 class="cl-blue">
+                        【1~10名猜组合】
+                        <p>竞猜内容为「大单」「小双」「小单」「大双」，共4种。</p>
+                    </h5>
+                    <p>
+                        ■赔率：<br />
+                        <small>「大单」、「小双」含本{:C('zuhe_1')}倍，</small>
+                        <small>「小单」、「大双」含本{:C('zuhe_2')}倍。</small>
+                        ■限额：20-10,000 <br />
+                        ■格式：名次/组合/金额<br />
+                        <small>例：890/大单/50 = 8.9.10车道大单各买$50 = 总$150</small>
+                    </p>
+
+                    <h5 class="cl-blue">
+                        【1~5名猜龙虎】
+                        <p>(1)第一名vs第十名，(2)第二名vs第九名，(3)第三名vs第八名，(4)第四名vs第七名，(5)第五名vs第六名，前比后大为龙，反之为虎。</p>
+                    </h5>
+                    <p>
+                        ■赔率：含本{:C('lh')}倍<br />
+                        ■限额：20-20,000<br />
+                        ■格式：名次/号码/金额<br />
+                        <small>例：123/龙/100 = 1~3车道买龙各$100=总$300</small>
+                    </p>
+
+                    <h5 class="cl-blue">
+                        【冠亚猜庄闲】
+                        <p>冠军车号「大于」亚军车号为庄，反之为闲。</p>
+                    </h5>
+                    <p>
+                        ■赔率：含本{:C('zx')}倍<br />
+                        ■限额：20-20,000<br />
+                        ■格式：庄闲/金额<br />
+                        <small>例：庄/200 = 冠军大于亚军即中奖</small>
+                    </p>
+
+                    <h5 class="cl-blue">
+                        【猜冠亚号码】
+                        <p>猜冠军及亚军车号，每次竞猜2个号码，顺序不限。</p>
+                    </h5>
+                    <p>
+                        ■赔率：含本{:C('gy')}倍<br />
+                        ■限额：20-5,000<br />
+                        ■格式：组/号码/金额<br />
+                        <small>例：组/5-6/50 = 5号.6号车在冠亚军(顺序不限) = 总$50</small>
+                        <small>例：组/1-9.3-7/100 = 1.9号车或3.7号车在冠亚军(顺序不限) = 总$200</small>
+                    </p>
+
+                    <h5 class="cl-blue">
+                        【冠亚和值(特码)猜大小单双】
+                        <p>冠军车号+亚军车号 = 冠亚和值 = 特码 = 数字3~19	</p>
+                        <p>冠亚和值大于或等于12为大，小于或等于11为小。开出的号码偶数为双，号码奇数为单。</p>
+                    </h5>
+                    <p>
+                        ■赔率：<br />
+                        <small>「大」、「双」含本{:C('tema_1')}倍。</small>
+                        <small>「小」、「单」含本{:C('tema_2')}倍。</small>
+                        ■限额：20-20,000<br />
+                        ■格式：和(特)/大小单双/金额<br />
+                        <small>例：和双100 = 「冠亚和」的双$100</small>
+                        <small>例：和大100 = 「冠亚和」的大$100</small>
+                    </p>
+
+                    <h5 class="cl-blue">
+                        【冠亚和值(特码)猜数字】
+                        <p>「冠亚和值」为「特码」可能出现的结果为3~19，竞猜中对应「冠亚和值」数字的视为中奖，其余视为不中奖。	</p>
+                    </h5>
+                    <p>
+                        ■赔率：<br />
+                        <small>
+                            3.4.18.19，含本{:C('tema_sz_1')}倍，限额20-1,000<br />
+                            5.6.16.17，含本{:C('tema_sz_2')}倍，限额20-2,000<br />
+                            7.8.14.15，含本{:C('tema_sz_3')}倍，限额20-3,000<br />
+                            9.10.12.13，含本{:C('tema_sz_4')}倍，限额20-4,000<br />
+                            11，含本8倍，限额20-5,000
+                        </small>
+                        ■格式：和(特)/数字/金额<br />
+                        <small>例：和5.6.7/100 = 竞猜「冠亚和」的值为5或6或7各$100 = 总$300</small>
+                    </p>
+
+                    <h5 class="cl-blue">
+                        【冠亚和值(特码)猜区段】
+                        <p>特码3~7为A段，8~14为B段，15~19为C段。</p>
+                    </h5>
+                    <p>
+                        ■赔率：<br />
+                        <small>
+                            「A」、「C」含本{:C('tema_qd_1')}倍。<br />
+                            「B」含本{:C('tema_qd_2')}倍。
+                        </small>
+                        ■竞猜限额：20-10,000<br />
+                        ■格式：ABC/金额<br />
+                        <small>例：BC/100 = 投注BC段位各100＝总$200</small>
+                    </p>
+                    <h4 class="cl-orange">每期下注：总额10万封顶</h4>
+                </div>
+                <div>
+                    <h4 class="cl-orange">【说明】</h4>
+                    <p>
+                        ■没带名次默认投第一名，如「双/100」第一名双$100、「123/100」第一名123号各$100<br />
+                        ■下注时因各地网路品质不定，可能有1-2秒延迟，以系统判定是否下注成功为准。<br />
+                        ■0号即为10号，投注时输入0即为10，输入10即为1、10号。<br />
+                        <small>例：0/0/100 = 视为竞猜10号车道10号车冠军<br />例：0/100 = 视为竞猜1号车道10号车冠军</small>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--结束pk10个人游戏规则-->
+<div class="am-popup" id="my-popup-bj28">
+    <div class="am-popup-inner">
+        <div class="am-popup-hd">
+            <h5 class="am-popup-title">北京28记录</h5>
+            <span data-am-modal-close
+                  class="am-close">&times;</span>
+        </div>
+        <div class="am-popup-bd" style="overflow: hidden">
+            <iframe src="{:U('Home/Dan/record')}?t=1" width="100%" height="400px" style="overflow: hidden">
+            </iframe>
+            <!--<table class="table-self">-->
+            <!--<tr class="tr-tr">-->
+            <!--<th>期号</th>-->
+            <!--<th>时间</th>-->
+            <!--<th>竞猜</th>-->
+            <!--<th>压注</th>-->
+            <!--<th>赚钱</th>-->
+            <!--<th>余额</th>-->
+            <!--<th>开奖</th>-->
+            <!--</tr>-->
+            <!--<volist name="bj28data" id="data">-->
+            <!--<tr class="tr-tr">-->
+            <!--<td>{$data.number}</td>-->
+            <!--<td>{$data.time|date="m/d H:i",###}</td>-->
+            <!--<td>{$data.jincai}</td>-->
+            <!--<td>{$data.del_points}</td>-->
+            <!--<td>{$data.add_points}</td>-->
+            <!--<td>{$data.balance}</td>-->
+            <!--<td>-->
+            <!--<if condition="$data.is_add == 1">是-->
+            <!--<else/>-->
+            <!--否-->
+            <!--</if>-->
+            <!--</td>-->
+            <!--</tr>-->
+            <!--</volist>-->
+            <!--</table>-->
+        </div>
+    </div>
+</div>
+<!--结束bj28个人游戏记录-->
+<div class="am-popup" id="my-popup-bj28-gz">
+    <div class="am-popup-inner">
+        <div class="am-popup-hd">
+            <h5 class="am-popup-title">北京28规则</h5>
+            <span data-am-modal-close
+                  class="am-close">&times;</span>
+        </div>
+        <div class="am-popup-bd">
+            <!--开始-->
+            <div class="regulation">
+                <h3 class="cl-red txt-al-c">【幸运28】</h3>
+                <div class="">
+                    <h4 class="cl-orange">【平台、游戏介绍】</h4>
+                    <p>幸运28是PC蛋蛋首创的竞猜游戏。结果号码源于国家福利彩票【国家福利彩票官网：bwlc.net】幸运快乐8开出号码为三个（0－9）中随机产生的数字之和，总共有28种结果（0－27）。每天从早上9:05至23:55，每5分钟一期。
+                        幸运 2 8 是根据什么开出的？</p>
+                </div>
+                <div class="">
+                    <h4 class="cl-orange">【幸运 2 8 是根据什么开出的？】</h4>
+                    <p>
+                        幸运28结果来源于国家福利彩票幸运快乐8结果号码，从早上9:05至23:55，每5分钟一期不停。 幸运快乐8每期结果共开出20个数字，幸运28将这20个结果号码按照由小到大的顺序依次排列；取其1-6位开出号码相加，和值的末位数作为幸运28开出第一个数值； 取其7-12位开出号码相加，和值的末位数作为幸运28开出第二个数值，取其13-18位开出号码相加，和值的末位数作为幸运28开出第三个数值；三个数值相加即为幸运28最终的结果。
+                    </p>
+                </div>
+                <div class="">
+                    <h4 class="cl-orange">【幸运 2 8 玩法说明】</h4>
+                    <p>
+                        幸运28采用幸运快乐8数据,时间从早上9:05至23:55，每5分钟一期。
+                        例如：快乐8第"641841"期数据从小到大排序 01,03,13,16,23,27,40,41,45,49,53,54,57,62,63,67,68,71,72,78
+                        第一区[第1/2/3/4/5/6位数字] 1,3,13,16,23,27
+                        计算：1+3+13+16+23+27= 83
+                        结果为3
+                        第二区[第7/8/9/10/11/12位数字] 40,41,45,49,53,54
+                        计算：27+40+41+45+49+53+54= 282
+                        结果为2
+                        第三区[第13/14/15/16/17/18位数字] 57,62,63,67,68,71
+                        计算：57+62+63+67+68+71= 388
+                        结果为8
+                        最终游戏结果为：3+2+8=13
+                    </p>
+                </div>
+                <div class="">
+                    <h4 class="cl-orange">【幸运 2 8 共有以下玩法】</h4>
+                    <p>
+                        1、大，小，单，双　例子：大／２０<br>
+                        2、小单，小双，大单，大双<br>
+                        3、极小值(0-5)，极大值(22-27)<br>
+                        4、28个号码定位<br>
+                        5 豹子，順子。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--结束bj28个人游戏规则-->
+<div class="am-popup" id="my-popup-jnd28">
+    <div class="am-popup-inner">
+        <div class="am-popup-hd">
+            <h5 class="am-popup-title">加拿大28记录</h5>
+            <span data-am-modal-close
+                  class="am-close">&times;</span>
+        </div>
+        <div class="am-popup-bd">
+            <iframe src="{:U('Home/Jnd/record')}?t=1" width="100%" height="400px">
+            </iframe>
+            <!--<table class="table-self">-->
+            <!--<tr class="tr-tr">-->
+            <!--<th>期号</th>-->
+            <!--<th>时间</th>-->
+            <!--<th>竞猜</th>-->
+            <!--<th>压注</th>-->
+            <!--<th>赚钱</th>-->
+            <!--<th>余额</th>-->
+            <!--<th>开奖</th>-->
+            <!--</tr>-->
+            <!--<volist name="jnd28data" id="data">-->
+            <!--<tr class="tr-tr">-->
+            <!--<td>{$data.number}</td>-->
+            <!--<td>{$data.time|date="m/d H:i",###}</td>-->
+            <!--<td>{$data.jincai}</td>-->
+            <!--<td>{$data.del_points}</td>-->
+            <!--<td>{$data.add_points}</td>-->
+            <!--<td>{$data.balance}</td>-->
+            <!--<td>-->
+            <!--<if condition="$data.is_add == 1">是-->
+            <!--<else/>-->
+            <!--否-->
+            <!--</if>-->
+            <!--</td>-->
+            <!--</tr>-->
+            <!--</volist>-->
+            <!--</table>-->
+        </div>
+    </div>
+</div>
+<!--结束jnd28个人游戏记录-->
+<div class="am-popup" id="my-popup-jnd28-gz">
+    <div class="am-popup-inner">
+        <div class="am-popup-hd">
+            <h5 class="am-popup-title">加拿大28规则</h5>
+            <span data-am-modal-close
+                  class="am-close">&times;</span>
+        </div>
+        <div class="am-popup-bd">
+            <!--开始-->
+            <div class="regulation">
+                <h3 class="cl-red txt-al-c">【幸运28】</h3>
+                <div class="">
+                    <h4 class="cl-orange">【平台、游戏介绍】</h4>
+                    <p>幸运28是PC蛋蛋首创的竞猜游戏。结果号码源于国家福利彩票【国家福利彩票官网：bwlc.net】幸运快乐8开出号码为三个（0－9）中随机产生的数字之和，总共有28种结果（0－27）。每天从早上9:05至23:55，每5分钟一期。
+                        幸运 2 8 是根据什么开出的？</p>
+                </div>
+                <div class="">
+                    <h4 class="cl-orange">【幸运 2 8 是根据什么开出的？】</h4>
+                    <p>
+                        幸运28结果来源于国家福利彩票幸运快乐8结果号码，从早上9:05至23:55，每5分钟一期不停。 幸运快乐8每期结果共开出20个数字，幸运28将这20个结果号码按照由小到大的顺序依次排列；取其1-6位开出号码相加，和值的末位数作为幸运28开出第一个数值； 取其7-12位开出号码相加，和值的末位数作为幸运28开出第二个数值，取其13-18位开出号码相加，和值的末位数作为幸运28开出第三个数值；三个数值相加即为幸运28最终的结果。
+                    </p>
+                </div>
+                <div class="">
+                    <h4 class="cl-orange">【幸运 2 8 玩法说明】</h4>
+                    <p>
+                        幸运28采用幸运快乐8数据,时间从早上9:05至23:55，每5分钟一期。
+                        例如：快乐8第"641841"期数据从小到大排序 01,03,13,16,23,27,40,41,45,49,53,54,57,62,63,67,68,71,72,78
+                        第一区[第1/2/3/4/5/6位数字] 1,3,13,16,23,27
+                        计算：1+3+13+16+23+27= 83
+                        结果为3
+                        第二区[第7/8/9/10/11/12位数字] 40,41,45,49,53,54
+                        计算：27+40+41+45+49+53+54= 282
+                        结果为2
+                        第三区[第13/14/15/16/17/18位数字] 57,62,63,67,68,71
+                        计算：57+62+63+67+68+71= 388
+                        结果为8
+                        最终游戏结果为：3+2+8=13
+                    </p>
+                </div>
+                <div class="">
+                    <h4 class="cl-orange">【幸运 2 8 共有以下玩法】</h4>
+                    <p>
+                        1、大，小，单，双　例子：大／２０<br>
+                        2、小单，小双，大单，大双<br>
+                        3、极小值(0-5)，极大值(22-27)<br>
+                        4、28个号码定位<br>
+                        5 豹子，順子。
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--结束jnd28个人游戏规则-->

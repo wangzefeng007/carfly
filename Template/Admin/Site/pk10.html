@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		<title>后台 - pk10配置</title>
+		<meta name="keywords" content="">
+		<meta name="description" content="">
+
+		<link rel="shortcut icon" href="favicon.ico">
+		<link href="__PUBLIC__/Admin/css/bootstrap.min14ed.css?v=3.3.6" rel="stylesheet">
+		<link href="__PUBLIC__/Admin/css/font-awesome.min93e3.css?v=4.4.0" rel="stylesheet">
+		<link href="__PUBLIC__/Admin/css/plugins/iCheck/custom.css" rel="stylesheet">
+		<link href="__PUBLIC__/Admin/css/animate.min.css" rel="stylesheet">
+		<link href="__PUBLIC__/Admin/css/style.min862f.css?v=4.1.0" rel="stylesheet">
+
+	</head>
+
+	<body class="gray-bg">
+		<div class="wrapper wrapper-content animated fadeInRight">
+			<div class="row">
+				<div class="col-sm-12">
+					<div class="ibox float-e-margins">
+						<div class="ibox-title">
+							<h5>pk10配置</h5>
+							<div class="ibox-tools">
+								<a class="collapse-link">
+									<i class="fa fa-chevron-up"></i>
+								</a>
+							</div>
+						</div>
+						<div class="ibox-content">
+							<form id="signform" action="{:U('Admin/Site/pk10')}" method="post" class="form-horizontal">
+								<div class="form-group">
+									<label class="col-sm-2 control-label">邀请返利（百分点）</label>
+									<div class="col-sm-6">
+										<input type="text" name="fenxiao" value="{:C('fenxiao')}" placeholder="输入邀请返利点" class="form-control">
+										例如：5即为充1000返利50
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">邀请返利最低充值</label>
+									<div class="col-sm-6">
+										<input type="text" name="fenxiao_min" value="{:C('fenxiao_min')}" placeholder="输入邀请返利最低充值点数" class="form-control">
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">虚拟在线人数</label>
+									<div class="col-sm-6">
+										<input type="text" name="online" value="{:C('online')}" placeholder="输入虚拟人数" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">是否开启机器人</label>
+									<div class="col-sm-6">
+										<input type="radio" value="1" <if condition="C('robot') eq 1">checked</if> class="i-checks" name="robot">开启&nbsp;&nbsp;
+										<input type="radio" value="0" <if condition="C('robot') eq 0">checked</if> class="i-checks" name="robot">关闭
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">几秒钟之前停止下注</label>
+									<div class="col-sm-6">
+										<input type="text" name="pk10_status_off" value="{:C('pk10_status_off')}" placeholder="输入几秒之前停止开奖" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">机器人随机频率（秒）</label>
+									<div class="col-sm-6">
+										<input type="text" name="pk10_robo_suiji" value="{:C('pk10_robo_suiji')}" placeholder="输入几秒之前停止开奖" class="form-control">
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">1~10名猜大小单双</label>
+								    <div class="col-sm-6">
+										<input type="text" name="dxds" value="{:C('dxds')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">1~10名猜车号</label>
+								    <div class="col-sm-6">
+										<input type="text" name="chehao" value="{:C('chehao')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">1~10名猜组合(大单,小双)</label>
+								    <div class="col-sm-6">
+										<input type="text" name="zuhe_1" value="{:C('zuhe_1')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">1~10名猜组合(小单,大双)</label>
+								    <div class="col-sm-6">
+										<input type="text" name="zuhe_2" value="{:C('zuhe_2')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">1~5名猜龙虎</label>
+								    <div class="col-sm-6">
+										<input type="text" name="lh" value="{:C('lh')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">冠亚猜庄闲</label>
+								    <div class="col-sm-6">
+										<input type="text" name="zx" value="{:C('zx')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">猜冠亚号码</label>
+								    <div class="col-sm-6">
+										<input type="text" name="gy" value="{:C('gy')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">冠亚和值(特码)(大，双)</label>
+								    <div class="col-sm-6">
+										<input type="text" name="tema_1" value="{:C('tema_1')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">冠亚和值(特码)(小，单)</label>
+								    <div class="col-sm-6">
+										<input type="text" name="tema_2" value="{:C('tema_2')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">冠亚和值(特码)猜数字(3.4.18.19)</label>
+								    <div class="col-sm-6">
+										<input type="text" name="tema_sz_1" value="{:C('tema_sz_1')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">冠亚和值(特码)猜数字(5.6.16.17)</label>
+								    <div class="col-sm-6">
+										<input type="text" name="tema_sz_2" value="{:C('tema_sz_2')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">冠亚和值(特码)猜数字(7.8.14.15)</label>
+								    <div class="col-sm-6">
+										<input type="text" name="tema_sz_3" value="{:C('tema_sz_3')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">冠亚和值(特码)猜数字(9.10.12.13)</label>
+								    <div class="col-sm-6">
+										<input type="text" name="tema_sz_4" value="{:C('tema_sz_4')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">冠亚和值(特码)猜数字(11)</label>
+								    <div class="col-sm-6">
+										<input type="text" name="tema_sz_5" value="{:C('tema_sz_5')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">冠亚和值(特码)猜区段(A,C)</label>
+								    <div class="col-sm-6">
+										<input type="text" name="tema_qd_1" value="{:C('tema_qd_1')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<label class="col-sm-2 control-label">冠亚和值(特码)猜区段(B)</label>
+								    <div class="col-sm-6">
+										<input type="text" name="tema_qd_2" value="{:C('tema_qd_2')}" placeholder="输入赔率" class="form-control">
+									</div>
+								</div>
+								<span style="color: red;">*赔率为含本赔率</span>
+								<div class="hr-line-dashed"></div>
+								<div class="form-group">
+									<div class="col-sm-4 col-sm-offset-2">
+										<button class="btn btn-primary" type="submit">保存信息</button>&nbsp;&nbsp;&nbsp;
+										<a class="btn btn-danger" href="{:U('Index/index')}">取消</a>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<script src="__PUBLIC__/Admin/js/jquery.min.js?v=2.1.4"></script>
+		<script src="__PUBLIC__/Admin/js/bootstrap.min.js?v=3.3.6"></script>
+		<script src="__PUBLIC__/Admin/js/content.min.js?v=1.0.0"></script>
+		<script src="__PUBLIC__/Common/js/ajaxForm.js"></script>
+		<script src="__PUBLIC__/Common/layer/layer.js"></script>
+		<script src="__PUBLIC__/Admin/js/plugins/iCheck/icheck.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$(".i-checks").iCheck({
+					checkboxClass: "icheckbox_square-green",
+					radioClass: "iradio_square-green",
+				})
+			});
+		</script>
+		<script>
+			$(function(){
+				$('#signform').ajaxForm({
+					success: complete, 
+					dataType: 'json'
+				});
+				function complete(data){
+					if(data.status==1){
+						$('.btn-primary').attr('disabled','disabled');
+						layer.msg(data.info, function(index){
+			 				layer.close(index);
+							window.location.href=data.url;
+						});
+					}else{
+						layer.msg(data.info);
+						return false;	
+					}
+				}
+			});
+		</script>
+	</body>
+
+</html>
