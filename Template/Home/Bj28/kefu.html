@@ -136,10 +136,6 @@
 		</style>
 	</head>
 	<body>
-		<!--<div id="shjow" class="container" style="position:relative;width:85%;margin-top:10px;" tabindex="-1">-->
-			<!--<span style="font-weight:700;font-size:20px;margin-top:20px;margin-left:90px;float: left;">长按二维码添加客服</span>-->
-			<!--<img tabindex="-1" src="__ROOT__/Uploads{$kefu.kefu}" style="width:80%;margin: 0 auto 10px 22%"/>-->
-		<!--</div>-->
 		<!--上下分的弹窗开始-->
 		<div class="am-modal am-modal-no-btn" tabindex="-1" id="doc-modal-1">
 			<div class="am-modal-dialog">
@@ -147,7 +143,7 @@
 					<a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
 				</div>
 				<div class="am-modal-bd">
-					<img src="__ROOT__/Uploads{$kefu.kefu}" style="width: 161px;">
+					<img src="/Uploads/carousel/2017-08-17/20170920214447.png" style="width: 161px;">
 				</div>
 				长按添加客服
 			</div>
@@ -159,54 +155,10 @@
 		</button>
 
 		<!--jq引入-->
-<script src='//cdn.bootcss.com/jquery/1.11.3/jquery.js'></script>
-		<link rel="stylesheet" href="__PUBLIC__/Select/css/font-awesome-4.7.0/css/font-awesome.css">
-		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/lib.css"/>
-		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/public.css"/>
-		<link rel="stylesheet" type="text/css" href="__PUBLIC__/Home/css/index.css"/>
 		<script src="__PUBLIC__/Select/js/jquery.min.js"></script>
+		<link rel="stylesheet" href="__PUBLIC__/Select/css/font-awesome-4.7.0/css/font-awesome.css">
 		<script src="__PUBLIC__/Select/js/amazeui.min.js"></script>
-		<script>
-            $(function () {
 
-                // 动态计算新闻列表文字样式
-                auto_resize();
-                $(window).resize(function () {
-                    auto_resize();
-                });
-                $('.am-list-thumb img').load(function () {
-                    auto_resize();
-                });
-
-                $('.am-list > li:last-child').css('border', 'none');
-                function auto_resize() {
-                    $('.pet_list_one_nr').height($('.pet_list_one_img').height());
-
-                }
-
-                $('.pet_nav_gengduo').on('click', function () {
-                    $('.pet_more_list').addClass('pet_more_list_show');
-                });
-                $('.pet_more_close').on('click', function () {
-                    $('.pet_more_list').removeClass('pet_more_list_show');
-                });
-                var now = new Date();
-                var number = now.getSeconds();
-                $('#yuanbao').html(Date.parse(new Date()) / 1000 - 1495572999);
-                $('#renshu').html(6841 + number);
-
-
-            });
-            $(document).ready(function () {
-                $("#ft a").click(function () {
-                    $("#ft a").eq($(this).index()).addClass("cur").siblings().removeClass('cur');
-                    $(".dd").hide().eq($(this).index()).show();
-                    //另一种方法: $("div").eq($(".tab li").index(this)).addClass("on").siblings().removeClass('on');
-
-                });
-            });
-
-		</script>
 
 
 

@@ -35,18 +35,15 @@ class WorkerJnd28Controller extends Server
         //1。获取北京28初始化数据
         $jianadabegin = strtotime('00:00:00');
         $jianadaend= strtotime("09:00:00");
-        if($jianadabegin<time() && time()<$jianadaend){
-            $bj28data = getJnd28();
-        }else{
-            $bj28data = getBj28();
-        }
+//        if($jianadabegin<time() && time()<$jianadaend){
 
-        echo "BEIJING_START";
+        $bj28data = getBj28();
+        echo "BEIJING_START__=";
         echo $bj28data['next']['periodNumber'];
-        echo "BEIJING_END";
-        echo "JND_START";
+        echo "__BEIJING_END";
+        echo "JND_START__=";
         echo $jnddata['next']['periodNumber'];
-        echo "JND_END";
+        echo "__JND_END";
         //1。获取北京赛车pk10初始化数据
         $pkdata = getPK10();
         //2.快3距离下一场的时间的值
@@ -77,6 +74,9 @@ class WorkerJnd28Controller extends Server
         } else {
             F('bj28_status', 0);
         }
+        echo "bj28_status_START__";
+        echo F('bj28_status');
+        echo "__bj28_status_END";
         //3.时时彩初始化状态状态是或开盘
         if ($ssc_nexttime - time() > 20 && $ssc_nexttime - time() < 600/* && time() > $beginToday && time() < $endToday*/) {
             F('ssc_status', 1);//开盘
@@ -669,7 +669,7 @@ class WorkerJnd28Controller extends Server
             echo 'getkuai3--';
             $type = 'update';
             $kuai3_datas = getkuai3($type);
-            dump($kuai3_datas);
+            echo $kuai3_datas['current']['periodNumber'];
             echo 'getkuai3--';
             if (F('kuai3_periodNumber')!= $kuai3_datas['current']['periodNumber']) {
                 $res = M('kuainumber')->where("periodnumber = {$kuai3_datas['current']['periodNumber']}")->find();
@@ -715,11 +715,11 @@ class WorkerJnd28Controller extends Server
                     if($duizinum == 1){
                         $dz = "二同号";
                         if($n1 ==$n2 &&$n1 !==$n3){
-                           $erbutongdan = $n1;
+                            $erbutongdan = $n1;
                         }elseif ($n1 ==$n3 &&$n1 !==$n2 ){
-                           $erbutongdan = $n1;
+                            $erbutongdan = $n1;
                         }elseif ($n1 !==$n2 && $n1!==$n3 &&$n2 ==$n3){
-                           $erbutongdan = $n2;
+                            $erbutongdan = $n2;
                         }
                     }else{
                         $dz = "二不同";
@@ -741,7 +741,8 @@ class WorkerJnd28Controller extends Server
             }
             //10.存储加拿大的每期的结果----------------------------------------------------------------------------------------
             echo "getjnd--";
-            $jnd_datas = getJnd28();
+            $type = 'update';
+            $jnd_datas = getJnd28($type);
             echo $jnd_datas['current']['periodNumber'];
             echo "getjnd--";
             if (F('jnd_periodNumber') != $jnd_datas['current']['periodNumber']) {
@@ -851,15 +852,16 @@ class WorkerJnd28Controller extends Server
             //10.存储北京28的每期的结果----------------------------------------------------------------------------------------
             $jianadabegin = strtotime('00:00:00');
             $jianadaend= strtotime("09:00:00");
-            if($jianadabegin<time() && time()<$jianadaend){
-                $type = 'update';
-                $bj28_datas = getJnd28($type);
-            }else{
+//            if($jianadabegin<time() && time()<$jianadaend){
+//                $type = 'update';
+//                $bj28_datas = getJnd28($type);
+//            }else{
                 echo "getbj28--";
                 $type = 'update';
                 $bj28_datas = getBj28($type);
-                echo "getbj28--";
-            }
+                echo $bj28_datas['current']['periodNumber'];
+                echo "--getbj28";
+//            }
             if (F('bj28_periodNumber') != $bj28_datas['current']['periodNumber']) {
                 $res = M('dannumber')->where("periodnumber = {$bj28_datas['current']['periodNumber']}")->find();
                 if (!$res) {
@@ -965,11 +967,11 @@ class WorkerJnd28Controller extends Server
 //
             }
             //10.存储北京pk10的每期的结果----------------------------------------------------------------------------------------
-           echo "getpk10--";
+            echo "getpk10--";
             $type = 'update';
             $pk10_datas = getPK10($type);
-            var_dump($pk10_datas);
-            echo "getpk10--11";
+            echo $pk10_datas['current']['periodNumber'];
+            echo "getpk10--";
             if (F('pk10_periodNumber') != $pk10_datas['current']['periodNumber']) {
 
                 $res = M('number')->where("periodnumber = {$pk10_datas['current']['periodNumber']}")->find();
@@ -1105,6 +1107,8 @@ class WorkerJnd28Controller extends Server
 //				$this->zidongjiesuan();//存结果的时候顺便结算
             }
         });
+        echo "onWorkerStart";
+//        $this->onWorkerStart();
     }
     /**
      * 客户端连接时
@@ -1189,7 +1193,7 @@ class WorkerJnd28Controller extends Server
                 $connection->send(json_encode($new_message));
                 break;
             case 'login_pk10':
-				            // 把昵称放到session中
+                // 把昵称放到session中
                 $client_name = htmlspecialchars($message_data['client_name']);
 
                 /* 保存uid到connection的映射，这样可以方便的通过uid查找connection，
@@ -1210,8 +1214,8 @@ class WorkerJnd28Controller extends Server
                 );
                 $connection->send(json_encode($new_message));
                 break;
-			case 'login_bj28':
-				            // 把昵称放到session中
+            case 'login_bj28':
+                // 把昵称放到session中
                 $client_name = htmlspecialchars($message_data['client_name']);
 
                 /* 保存uid到connection的映射，这样可以方便的通过uid查找connection，

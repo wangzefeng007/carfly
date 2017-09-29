@@ -277,12 +277,12 @@ function getPK10($type)
 //北京28
 function getBj28($type)
 {
-    $begin = strtotime('00:00:00');
-    $end = strtotime("08:59:59");
-    if($begin<time() && time()<$end){
-        //加拿大
-        getJnd28();
-    }else{
+//    $begin = strtotime('00:00:00');
+//    $end = strtotime("08:59:59");
+//    if($begin<time() && time()<$end){
+//        //加拿大
+//        getJnd28();
+//    }else{
         if ($type =='update'){
             $result = S('klbjdata');
            if (empty($result)) {
@@ -322,12 +322,13 @@ function getBj28($type)
                $klbj28data = F('cachebj28');
             }
             S('newcachebj28',$klbj28data);
+            return $klbj28data;
         }else{
             $bj28data = S('newcachebj28');
             $bj28data['next']['awardTimeInterval'] = (strtotime($bj28data['next']['awardTime']) - time()) * 1000;
             return $bj28data;
         }
-    }
+//    }
 
 //    北京28直接运用款-----------------------↓--------------------------↓
 //    $result = S('dandata');
@@ -476,6 +477,7 @@ function getJnd28($type)
             $jnddata = F('cachejnd');
         }
         S('newcachejnd',$jnddata);
+        return $jnddata;
     }else{
         $jnddata = S('newcachejnd');
         $jnddata['next']['awardTimeInterval'] = (strtotime($jnddata['next']['awardTime']) - time()) * 1000;

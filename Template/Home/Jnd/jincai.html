@@ -169,102 +169,102 @@
 <!--</div>-->
 <script src='//cdn.bootcss.com/jquery/1.11.3/jquery.js'></script>
 
-<script>
-    //	点击投注table外 隐藏
-    function inputsr2(){
-        $("#Betting-box").css('display','none');
-        $("#textarea").val('');
-    }
-    //	投注列表显示
-    function inputsr() {
-//		点击显示
-        $("#Betting-box").css('display','block');
-//		建立一个投注数组
-        var arr=['大','小','单','双','极大','大单','小单','大双','小双','极小'];
-        var d=0;
-
-        for(var j=0;j<=24;j++){
-            arr.push(j);
+	<script>
+        //	点击投注table外 隐藏
+        function inputsr2(){
+            $("#Betting-box").css('display','none');
+            $("#textarea").val('');
         }
-        arr.push("&nbsp;",'25','26','27',"&nbsp;");
+        //	投注列表显示
+        function inputsr() {
+//		点击显示
+            $("#Betting-box").css('display','block');
+//		建立一个投注数组
+            var arr=['大','小','单','双','极大','大单','小单','大双','小双','极小'];
+            var d=0;
+
+            for(var j=0;j<=24;j++){
+                arr.push(j);
+            }
+            arr.push("&nbsp;",'25','26','27',"&nbsp;");
 //		建立一个投注数组完成
 
 //      建立一个倍数数组
 //					大，小，单，双，极大
-        var add=[ '1:2','1:2','1:2','1:2','1:15',
+            var add=[ '1:2','1:2','1:2','1:2','1:15',
 //				大单，小单， 大双，小双 ，极小
-            '1:4.2','1:4.6','1:4.6','1:4.2','1:15',
+                '1:4.2','1:4.6','1:4.6','1:4.2','1:15',
 //				0-4
-            '1.288','1.208','1.88','1.58','1.38',
+                '1.288','1.208','1.88','1.58','1.38',
 //				5-9
-            '1:28','1:13','1:13','1:13','1:13',
+                '1:28','1:13','1:13','1:13','1:13',
 //				10-14
-            '1:13','1:13','1:12','1:12','1:12',
+                '1:13','1:13','1:12','1:12','1:12',
 //				15-19
-            '1:12','1:13','1:13','1:13','1:13',
+                '1:12','1:13','1:13','1:13','1:13',
 //				20-24
-            '1:13','1:13','1:28','1:38','1:58',
+                '1:13','1:13','1:28','1:38','1:58',
 //				25-27
-            "&nbsp;",'1:88','1:208','1:288','&nbsp;'
-        ];
+                "&nbsp;",'1:88','1:208','1:288','&nbsp;'
+            ];
 //      建立一个倍数数组完成
 
 
-        var tzxz='投注选择';
-        var quedingtouzhu='投注';
-        var qingtouzhu='投注金额:';
+            var tzxz='投注选择';
+            var quedingtouzhu='投注';
+            var qingtouzhu='投注金额:';
 //建立表格 把投注 倍数添加进去
-        var htmlstr=
-            "<div style='background:#367AE7;width:85%;height:20px;text-align:center;font-size:0.8em;color: white;margin:30px 12% 0;'>"+tzxz+"</div>"+
-            "<div style='margin:0 12%;;width:85%;height:100px;overflow-y:auto;background: #367AE7;'>"+
-            "<table style='width:100%;'>";
-        for(i=1;i<=8;i++){
-            htmlstr+="<tr style='height:2em;line-height:2em'>";
-            for(j=1;j<=5;j++){
-                htmlstr+="<td style='width:20%;text-align: center;height: 1.2em'>"+"<table style='width: 100%;' class='tabletzh' onclick='betting(this)'>"+
-                    "<tr style='width:20%;height: 0.7em'>"+
-                    //投注选择
-                    "<td class='tzhtml' style='width:100%;text-align: center;font-size:0.6em;color: white;'>"+arr[d]+"</td>"+
-                    "</tr>"+"<tr style='width:20%;height: 0.7em'>"+
-                    //倍数详情
-                    "<td  style='font-size:0.5em;width:100%;text-align: center;color: white;'>"+add[d]+"</td>"+
-                    "</tr>"+
-                    "</table>"+"</td>";
-                d++;
+            var htmlstr=
+                "<div style='background:#367AE7;width:85%;height:20px;text-align:center;font-size:0.8em;color: white;margin:30px 12% 0;'>"+tzxz+"</div>"+
+                "<div style='margin:0 12%;;width:85%;height:130px;overflow-y:auto;background: #367AE7;'>"+
+                "<table style='width:100%;'>";
+            for(i=1;i<=8;i++){
+                htmlstr+="<tr style='height:2.5em;line-height:2.5em'>";
+                for(j=1;j<=5;j++){
+                    htmlstr+="<td style='width:20%;text-align: center;height:2.5em'>"+"<table style='width: 100%;' class='tabletzh' onclick='betting(this)'>"+
+                        "<tr style='width:20%;height:1.25em'>"+
+                        //投注选择
+                        "<td class='tzhtml' style='width:100%;text-align: center;font-size:1.3em;color: white;'>"+arr[d]+"</td>"+
+                        "</tr>"+"<tr style='width:20%;height:1.25em'>"+
+                        //倍数详情
+                        "<td  style='font-size:0.5em;width:100%;text-align: center;color: white;'>"+add[d]+"</td>"+
+                        "</tr>"+
+                        "</table>"+"</td>";
+                    d++;
+                }
+                htmlstr+="</tr>";
             }
-            htmlstr+="</tr>";
-        }
 
-        htmlstr+="</table>"+"</div>"+
-            "<div    style='background:#367AE7;width:85%;height:30px;;margin:0 12%;'>"+
-            "<div  style='background:#367AE7;'>"+
-            "<span style='color:white;background:#367AE7;height:20px;line-height:20px;margin:0 3% 0 3%;float: left;'>"+qingtouzhu+"</span>"+
-            "<input onblur='xuanzhi()' style='width:54%;height:25px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius: 5px;float: left;' id='tzjine' type='number'placeholder='请输入投注金额'>"+
-            "<button style='background:yellow;width:13%;height:25px;margin:0 3%;-webkit-border-radius: 5px;-moz-border-radius:5px;border-radius: 5px;float: left;' onclick='onSubmit(); return false;'>"+quedingtouzhu+"</button>"+
-            "</div>"+
-            "<div>"+"</div>";
-        $('#Betting-box').html(htmlstr);
-    }
-    //投注赋值
-    var $text
-    function betting(obj) {
+            htmlstr+="</table>"+"</div>"+
+                "<div    style='background:#367AE7;width:85%;height:30px;;margin:0 12%;'>"+
+                "<div  style='background:#367AE7;'>"+
+                "<span style='color:white;background:#367AE7;height:20px;line-height:20px;margin:0 3% 0 3%;float: left;'>"+qingtouzhu+"</span>"+
+                "<input onblur='xuanzhi()' style='width:54%;height:25px;-webkit-border-radius:5px;-moz-border-radius:5px;border-radius: 5px;float: left;' id='tzjine' type='number'placeholder='请输入投注金额'>"+
+                "<button style='background:yellow;width:13%;height:25px;margin:0 3%;-webkit-border-radius: 5px;-moz-border-radius:5px;border-radius: 5px;float: left;' onclick='onSubmit(); return false;'>"+quedingtouzhu+"</button>"+
+                "</div>"+
+                "<div>"+"</div>";
+            $('#Betting-box').html(htmlstr);
+        }
+        //投注赋值
+        var $text
+        function betting(obj) {
 //		选中的注
-        $(".tabletzh").css("border","none");
-        $(obj).css("border","1px red solid");
+            $(".tabletzh").css("border","none");
+            $(obj).css("border","1px red solid");
 //		取得td的值
-        var tdnum=$(obj).find(".tzhtml").html();
+            var tdnum=$(obj).find(".tzhtml").html();
 //		取得投注金额的值
-        $text=tdnum;
-        $(tzjine).val('');
-        $("#textarea").val('');
-    }
-    function xuanzhi(){
-        var a=$text;
-        var b='/';
-        var c=$("#tzjine").val();
-        $("#textarea").val(a+b+c);
-    }
-</script>
+            $text=tdnum;
+            $(tzjine).val('');
+            $("#textarea").val('');
+        }
+        function xuanzhi(){
+            var a=$text;
+            var b='/';
+            var c=$("#tzjine").val();
+            $("#textarea").val(a+b+c);
+        }
+	</script>
 <!--聊天-->
 <script type="text/javascript" src="__PUBLIC__/worker/js/swfobject.js"></script>
 <script type="text/javascript" src="__PUBLIC__/worker/js/web_socket.js"></script>

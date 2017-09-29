@@ -238,11 +238,15 @@ function check_format_dan($message,$id,$room)
             'jincai'=> array('like', "$chaxuntiaojian%"),
         );
         $jndxiazhujinetype2 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = $dankaijiangqihao and type= 1 and state = 1 and userid = $id and jincai like '$chaxuntiaojian%'");
+        $jndxiazhujinetype2 = $jndxiazhujinetype2[0]['sum_points'];
         if ($info[1] >= C('jnd_jinezx'.$room) && $info[1]+$jndxiazhujinetype2 <= C('jnd_check_zh'.$room)&&$info[1]+$alljine < C('jnd_all_jine'.$room)) {
             $data['points'] = $info[1];
             $data['type'] = 2;
         } else {
             $data['error'] = 0;
+            if (empty($jndxiazhujinetype2)){
+                $jndxiazhujinetype2 =0;
+            }
             $data['money'] = C('jnd_jinezx'.$room).'-'.C('jnd_check_zh'.$room).'本期压注总金额：'.$jndxiazhujinetype2;
         }
     }
@@ -258,11 +262,16 @@ function check_format_dan($message,$id,$room)
             'jincai'=> array('like', "$chaxuntiaojian%"),
         );
         $jndxiazhujinetype3 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = $dankaijiangqihao and type= 1 and state = 1 and userid = $id and jincai like '$chaxuntiaojian%'");
+        $jndxiazhujinetype3 = $jndxiazhujinetype3[0]['sum_points'];
         if ($info[1] >= C('jnd_jinezx'.$room) && $info[1]+$jndxiazhujinetype3 <= C('jnd_check_tm'.$room)&&$info[1]+$alljine < C('jnd_all_jine'.$room)) {
             $data['points'] = $info[1];
             $data['type'] = 3;
         } else {
+
             $data['error'] = 0;
+            if (empty($jndxiazhujinetype3)){
+                $jndxiazhujinetype3 =0;
+            }
             $data['money'] = C('jnd_jinezx'.$room).'-'.C('jnd_check_tm'.$room).'本期压注总金额：'.$jndxiazhujinetype3.'单局最高'.C('jnd_all_jine'.$room);
         }
     }
@@ -286,6 +295,9 @@ function check_format_dan($message,$id,$room)
                 $data['type'] = 4;
             }else{
                 $data['error'] = 0;
+                if (empty($jndxiazhujinetype4)){
+                    $jndxiazhujinetype4 =0;
+                }
                 $data['money'] =  C('jnd_jinezx'.$room).'-'.C('jnd_check_tm'.$room).'本期压注总金额：'.$jndxiazhujinetype4.'单局最高'.C('jnd_all_jine'.$room);
             }
 
@@ -314,6 +326,9 @@ function check_format_dan($message,$id,$room)
             $data['type'] = 5;
         } else {
             $data['error'] = 0;
+            if (empty($jndxiazhujinetype5)){
+                $jndxiazhujinetype5 =0;
+            }
             $data['money'] = C('jnd_jinezx').'-'.C('jnd_check_bz').'本期压注总金额：'.$jndxiazhujinetype5.'单局最高'.C('jnd_all_jine');
         }
     }
@@ -335,6 +350,9 @@ function check_format_dan($message,$id,$room)
             $data['type'] = 6;
         } else {
             $data['error'] = 0;
+            if (empty($jndxiazhujinetype6)){
+                $jndxiazhujinetype6 =0;
+            }
             $data['money'] = C('jnd_jinezx').'-'.C('jnd_check_sz').'本期压注总金额：'.$jndxiazhujinetype6.'单局最高'.C('jnd_all_jine');
         }
     }
@@ -397,11 +415,14 @@ function check_format_jnd($message,$id,$room)
         );
         $jndxiazhujinetype1 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = $dankaijiangqihao and type= 1 and state = 1 and userid = $id and jincai like '$chaxuntiaojian%'");
         $jndxiazhujinetype1 = $jndxiazhujinetype1[0]['sum_points'];
-        if ($info[1] >= C('jnd_jinezx'.$room) && $info[1]+$jndxiazhujinetype1 <= C('jnd_check_dx'.$room)&&$info[1]+$alljine < C('jnd_all_jine'.$room)) {
+        if ($info[1] >= C('jnd_jinezx'.$room) && $info[1]+$jndxiazhujinetype1 <= C('jnd_check_dx'.$room)&& $info[1]+$alljine < C('jnd_all_jine'.$room)) {
             $data['points'] = $info[1];
             $data['type'] = 1;
         } else {
             $data['error'] = 0;
+            if (empty($jndxiazhujinetype1)){
+                $jndxiazhujinetype1 =0;
+            }
             $data['money'] = C('jnd_jinezx'.$room).'-'.C('jnd_check_dx'.$room).'本期压注总金额：'.$jndxiazhujinetype1.'单局最高'.C('jnd_all_jine'.$room);
         }
     }
@@ -423,6 +444,9 @@ function check_format_jnd($message,$id,$room)
             $data['type'] = 2;
         } else {
             $data['error'] = 0;
+            if (empty($jndxiazhujinetype2)){
+                $jndxiazhujinetype2 =0;
+            }
             $data['money'] = C('jnd_jinezx'.$room).'-'.C('jnd_check_zh'.$room).'本期压注总金额：'.$jndxiazhujinetype2;
         }
     }
@@ -444,6 +468,9 @@ function check_format_jnd($message,$id,$room)
             $data['type'] = 3;
         } else {
             $data['error'] = 0;
+            if (empty($jndxiazhujinetype3)){
+                $jndxiazhujinetype3 =0;
+            }
             $data['money'] = C('jnd_jinezx'.$room).'-'.C('jnd_check_tm'.$room).'本期压注总金额：'.$jndxiazhujinetype3.'单局最高'.C('jnd_all_jine'.$room);
         }
     }
@@ -467,6 +494,9 @@ function check_format_jnd($message,$id,$room)
                 $data['type'] = 4;
             }else{
                 $data['error'] = 0;
+                if (empty($jndxiazhujinetype4)){
+                    $jndxiazhujinetype4 =0;
+                }
                 $data['money'] =  C('jnd_jinezx'.$room).'-'.C('jnd_check_tm'.$room).'本期压注总金额：'.$jndxiazhujinetype4.'单局最高'.C('jnd_all_jine'.$room);
             }
 
@@ -495,6 +525,9 @@ function check_format_jnd($message,$id,$room)
             $data['type'] = 5;
         } else {
             $data['error'] = 0;
+            if (empty($jndxiazhujinetype5)){
+                $jndxiazhujinetype5 =0;
+            }
             $data['money'] = C('jnd_jinezx').'-'.C('jnd_check_bz').'本期压注总金额：'.$jndxiazhujinetype5.'单局最高'.C('jnd_all_jine');
         }
     }
@@ -516,6 +549,9 @@ function check_format_jnd($message,$id,$room)
             $data['type'] = 6;
         } else {
             $data['error'] = 0;
+            if (empty($jndxiazhujinetype6)){
+                $jndxiazhujinetype6 =0;
+            }
             $data['money'] = C('jnd_jinezx').'-'.C('jnd_check_sz').'本期压注总金额：'.$jndxiazhujinetype6.'单局最高'.C('jnd_all_jine');
         }
     }

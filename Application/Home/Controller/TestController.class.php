@@ -9,6 +9,7 @@ class TestController extends Controller
 {
     public function index()
     {
+        var_dump(F('bj28_status'));exit;
         $jndxiazhujinetype1 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = 847623 and type= 1 and state = 1 and userid = 72 and jincai like '小%'"); var_dump($jndxiazhujinetype1[0]['sum_points']);exit;
         $type =  'update';
         $result = S('jnd28data');
@@ -283,56 +284,10 @@ class TestController extends Controller
        }
     }
     public function ceshi(){
-//        $type='update';
-//        $bj28_datas = getBj28($type);
-//        $res = M('dannumber')->where("periodnumber = {$bj28_datas['current']['periodNumber']}")->find();
-//var_dump($res);
 
-
-
-
-//        北京28
-        $c=S('newcachebj28');
-//        var_dump($c);
-        $type='update';
-        $pkdata = getBj28($type);
-        $type = 'update';
-        $bj28_datas = getBj28($type);
-//        var_dump($pkdata);
-//var_dump( F('get28data',null));
-//var_dump( F('get28data',S('newcachebj8')));
-var_dump( S('newcachebj28'));
-//var_dump( F('get28data'));
-//var_dump( getBj28($type));
-//        加拿大28
-//        $b=F('get28data',null);
-//        $b=F('get28data');
-//        var_dump($b);
-        $f=F('id_dansend');
-        //        加拿大28
-        $bb= F('get28data');
-//        var_dump($bb);
-//        $a = S('klbjdata',NULL);
-//       $a = S('jnd28data');var_dump($a);
-
-        $cc=F('cachejnd');//1506584190 加拿大期数  差距较大
-//        dump($cc);
-        echo '<br>';
-        $e=F('bj28_periodNumber');//843019 北京期数  差距较大
-//        var_dump($e);
-        echo '<br>';
-
-        $d=F('getbj28data');//错误的北京28开奖信息 差距100多期
-//        var_dump($d);
 
 
         exit;
-
-
-
-
-
-
         echo '<br>';
 
 

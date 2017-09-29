@@ -27,8 +27,8 @@ class WorkerBj28Controller extends Server
         $jianadabegin = strtotime('00:00:00');
         $jianadaend= strtotime("09:00:00");
         if($jianadabegin<time() && time()<$jianadaend){
-//            $type = 'update';
-//            $pkdata = getJnd28($type);
+            $type = 'update';
+            $pkdata = getJnd28($type);
         }else{
             $type = 'update';
             $pkdata = getBj28($type);
@@ -227,7 +227,6 @@ class WorkerBj28Controller extends Server
             $jianadaend= strtotime("09:00:00");
             if ($jianadabegin<time() && time()<$jianadaend){
                 $datas = getBj28();
-
             }else{
                 $datas = getJnd28();
             }
