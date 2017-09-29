@@ -278,6 +278,7 @@ function check_format_dan($message,$id,$room)
             'jincai'=> array('like', "$chaxuntiaojian%"),
         );
         $jndxiazhujinetype4 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = $dankaijiangqihao and type= 1 and state = 1 and userid = $id and jincai like '$chaxuntiaojian%'");
+        $jndxiazhujinetype4 = $jndxiazhujinetype4[0]['sum_points'];
         $alln = $info[0];
         if ($alln <= 27) {
             if ($info[1] >= C('jnd_jinezx'.$room) && $info[1]+$jndxiazhujinetype4 <= C('jnd_check_tm'.$room)&&$info[1]+$alljine < C('jnd_all_jine'.$room)) {
@@ -307,6 +308,7 @@ function check_format_dan($message,$id,$room)
             'jincai'=> array('like', "$chaxuntiaojian%"),
         );
         $jndxiazhujinetype5 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = $dankaijiangqihao and type= 1 and state = 1 and userid = $id and jincai like '$chaxuntiaojian%'");
+        $jndxiazhujinetype5 = $jndxiazhujinetype5[0]['sum_points'];
         if ($info[1] >= C('jnd_jinezx') && $info[1]+$jndxiazhujinetype5 <= C('jnd_check_bz')&&$info[1]+$alljine < C('jnd_all_jine')) {
             $data['points'] = $info[1];
             $data['type'] = 5;
@@ -327,6 +329,7 @@ function check_format_dan($message,$id,$room)
             'jincai'=> array('like', "$chaxuntiaojian%"),
         );
         $jndxiazhujinetype6 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = $dankaijiangqihao and type= 1 and state = 1 and userid = $id and jincai like '$chaxuntiaojian%'");
+        $jndxiazhujinetype6 = $jndxiazhujinetype6[0]['sum_points'];
         if ($info[1] >= C('jnd_jinezx') && $info[1]+$jndxiazhujinetype6 <= C('jnd_check_sz')&&$info[1]+$alljine < C('jnd_all_jine')) {
             $data['points'] = $info[1];
             $data['type'] = 6;
@@ -393,6 +396,7 @@ function check_format_jnd($message,$id,$room)
             'jincai'=> array('like', "$chaxuntiaojian%"),
         );
         $jndxiazhujinetype1 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = $dankaijiangqihao and type= 1 and state = 1 and userid = $id and jincai like '$chaxuntiaojian%'");
+        $jndxiazhujinetype1 = $jndxiazhujinetype1[0]['sum_points'];
         if ($info[1] >= C('jnd_jinezx'.$room) && $info[1]+$jndxiazhujinetype1 <= C('jnd_check_dx'.$room)&&$info[1]+$alljine < C('jnd_all_jine'.$room)) {
             $data['points'] = $info[1];
             $data['type'] = 1;
@@ -413,6 +417,7 @@ function check_format_jnd($message,$id,$room)
             'jincai'=> array('like', "$chaxuntiaojian%"),
         );
         $jndxiazhujinetype2 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = $dankaijiangqihao and type= 1 and state = 1 and userid = $id and jincai like '$chaxuntiaojian%'");
+        $jndxiazhujinetype2 = $jndxiazhujinetype2[0]['sum_points'];
         if ($info[1] >= C('jnd_jinezx'.$room) && $info[1]+$jndxiazhujinetype2 <= C('jnd_check_zh'.$room)&&$info[1]+$alljine < C('jnd_all_jine'.$room)) {
             $data['points'] = $info[1];
             $data['type'] = 2;
@@ -433,6 +438,7 @@ function check_format_jnd($message,$id,$room)
             'jincai'=> array('like', "$chaxuntiaojian%"),
         );
         $jndxiazhujinetype3 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = $dankaijiangqihao and type= 1 and state = 1 and userid = $id and jincai like '$chaxuntiaojian%'");
+        $jndxiazhujinetype3 = $jndxiazhujinetype3[0]['sum_points'];
         if ($info[1] >= C('jnd_jinezx'.$room) && $info[1]+$jndxiazhujinetype3 <= C('jnd_check_tm'.$room)&&$info[1]+$alljine < C('jnd_all_jine'.$room)) {
             $data['points'] = $info[1];
             $data['type'] = 3;
@@ -453,6 +459,7 @@ function check_format_jnd($message,$id,$room)
             'jincai'=> array('like', "$chaxuntiaojian%"),
         );
         $jndxiazhujinetype4 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = $dankaijiangqihao and type= 1 and state = 1 and userid = $id and jincai like '$chaxuntiaojian%'");
+        $jndxiazhujinetype4 = $jndxiazhujinetype4[0]['sum_points'];
         $alln = $info[0];
         if ($alln <= 27) {
             if ($info[1] >= C('jnd_jinezx'.$room) && $info[1]+$jndxiazhujinetype4 <= C('jnd_check_tm'.$room)&&$info[1]+$alljine < C('jnd_all_jine'.$room)) {
@@ -482,6 +489,7 @@ function check_format_jnd($message,$id,$room)
             'jincai'=> array('like', "$chaxuntiaojian%"),
         );
         $jndxiazhujinetype5 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = $dankaijiangqihao and type= 1 and state = 1 and userid = $id and jincai like '$chaxuntiaojian%'");
+        $jndxiazhujinetype5 = $jndxiazhujinetype5[0]['sum_points'];
         if ($info[1] >= C('jnd_jinezx') && $info[1]+$jndxiazhujinetype5 <= C('jnd_check_bz')&&$info[1]+$alljine < C('jnd_all_jine')) {
             $data['points'] = $info[1];
             $data['type'] = 5;
@@ -502,6 +510,7 @@ function check_format_jnd($message,$id,$room)
             'jincai'=> array('like', "$chaxuntiaojian%"),
         );
         $jndxiazhujinetype6 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = $dankaijiangqihao and type= 1 and state = 1 and userid = $id and jincai like '$chaxuntiaojian%'");
+        $jndxiazhujinetype6 = $jndxiazhujinetype6[0]['sum_points'];
         if ($info[1] >= C('jnd_jinezx') && $info[1]+$jndxiazhujinetype6 <= C('jnd_check_sz')&&$info[1]+$alljine < C('jnd_all_jine')) {
             $data['points'] = $info[1];
             $data['type'] = 6;

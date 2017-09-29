@@ -40,6 +40,13 @@ class WorkerJnd28Controller extends Server
         }else{
             $bj28data = getBj28();
         }
+
+        echo "BEIJING_START";
+        echo $bj28data['next']['periodNumber'];
+        echo "BEIJING_END";
+        echo "JND_START";
+        echo $jnddata['next']['periodNumber'];
+        echo "JND_END";
         //1。获取北京赛车pk10初始化数据
         $pkdata = getPK10();
         //2.快3距离下一场的时间的值
@@ -206,6 +213,7 @@ class WorkerJnd28Controller extends Server
                     $conn->send(json_encode($new_message));
                 }
                 $type="bj28";
+                $this->add_message($new_message,$type);
                 $this->add_message($new_message,$type);
             }
             //7.北京赛车pk10在距离38s的时候，提醒一次
@@ -733,9 +741,8 @@ class WorkerJnd28Controller extends Server
             }
             //10.存储加拿大的每期的结果----------------------------------------------------------------------------------------
             echo "getjnd--";
-            $type = 'update';
-            $jnd_datas = getJnd28($type);
-            dump($jnd_datas);
+            $jnd_datas = getJnd28();
+            echo $jnd_datas['current']['periodNumber'];
             echo "getjnd--";
             if (F('jnd_periodNumber') != $jnd_datas['current']['periodNumber']) {
                 $res = M('dannumber')->where("periodnumber = {$jnd_datas['current']['periodNumber']}")->find();
@@ -1255,6 +1262,7 @@ class WorkerJnd28Controller extends Server
                     $time_error_message = array(
                         'uid' => $connection->uid,
                         'type' => 'say',
+                        'room'=>$message_data['room'],
                         'send_type'=>'jnd28',
                         'head_img_url' => $message_data['headimgurl'],
                         'from_client_name' => $message_data['client_name'],
@@ -1269,6 +1277,7 @@ class WorkerJnd28Controller extends Server
                     $time_message = array(
                         'uid' => $connection->uid,
                         'type' => 'admin',
+                        'room'=>$message_data['room'],
                         'send_type'=>'jnd28',
                         'head_img_url' => '/Public/main/img/kefu.jpg',
                         'from_client_name' => 'GM管理员',
@@ -1281,11 +1290,12 @@ class WorkerJnd28Controller extends Server
                     $this->add_message($time_message,$type);/*添加信息*/
                 } else {
                     /*检测格式和金额*/
-                    $res = check_format_jnd($message_data['content'],$connection->uid);
+                    $res = check_format_jnd($message_data['content'],$connection->uid,$message_data['room']);
                     if ($res['error'] == 0) {
                         $error_message = array(
                             'uid' => $connection->uid,
                             'type' => 'say',
+                            'room'=>$message_data['room'],
                             'send_type'=>'jnd28',
                             'head_img_url' => $message_data['headimgurl'],
                             'from_client_name' => $message_data['client_name'],
@@ -1300,6 +1310,7 @@ class WorkerJnd28Controller extends Server
                         $new_message = array(
                             'uid' => $connection->uid,
                             'type' => 'admin',
+                            'room'=>$message_data['room'],
                             'send_type'=>'jnd28',
                             'head_img_url' => '/Public/main/img/kefu.jpg',
                             'from_client_name' => 'GM管理员',
@@ -1317,6 +1328,7 @@ class WorkerJnd28Controller extends Server
                             $points_error = array(
                                 'uid' => $connection->uid,
                                 'type' => 'say',
+                                'room'=>$message_data['room'],
                                 'send_type'=>'jnd28',
                                 'head_img_url' => $message_data['headimgurl'],
                                 'from_client_name' => $message_data['client_name'],
@@ -1331,6 +1343,7 @@ class WorkerJnd28Controller extends Server
                             $points_tips = array(
                                 'uid' => $connection->uid,
                                 'type' => 'admin',
+                                'room'=>$message_data['room'],
                                 'send_type'=>'jnd28',
                                 'head_img_url' => '/Public/main/img/kefu.jpg',
                                 'from_client_name' => 'GM管理员',
@@ -1345,6 +1358,7 @@ class WorkerJnd28Controller extends Server
                             $user = M('user')->where("id = $userid")->find();
                             $getjnd28data = F('getjnd28data');
                             $map['userid'] = $userid;
+                            $map['room'] = $message_data['room'];
                             $map['type'] = $res['type'];
                             $map['state'] = 1;
                             $map['is_add'] = 0;
@@ -1372,6 +1386,7 @@ class WorkerJnd28Controller extends Server
 
                                 $new_message2 = array(
                                     'uid' => $connection->uid,
+                                    'room'=>$message_data['room'],
                                     'type' => 'say',
                                     'send_type'=>'jnd28',
                                     'head_img_url' => $message_data['headimgurl'],
@@ -1390,6 +1405,7 @@ class WorkerJnd28Controller extends Server
                                     $new_message1 = array(
                                         'uid' => $connection->uid,
                                         'type' => 'admin',
+                                        'room'=>$message_data['room'],
                                         'send_type'=>'jnd28',
                                         'head_img_url' => '/Public/main/img/kefu.jpg',
                                         'from_client_name' => 'GM管理员',
@@ -1407,6 +1423,7 @@ class WorkerJnd28Controller extends Server
                         $format_error_message = array(
                             'uid' => $connection->uid,
                             'type' => 'say',
+                            'room'=>$message_data['room'],
                             'send_type'=>'jnd28',
                             'head_img_url' => $message_data['headimgurl'],
                             'from_client_name' => $message_data['client_name'],
@@ -1420,6 +1437,7 @@ class WorkerJnd28Controller extends Server
                         $new_message3 = array(
                             'uid' => $connection->uid,
                             'type' => 'admin',
+                            'room'=>$message_data['room'],
                             'send_type'=>'jnd28',
                             'head_img_url' => '/Public/main/img/kefu.jpg',
                             'from_client_name' => 'GM管理员',
@@ -1627,6 +1645,7 @@ class WorkerJnd28Controller extends Server
                 if ($jndstatus == 0) {
                     $time_error_message = array(
                         'uid' => $connection->uid,
+                        'room'=>$message_data['room'],
                         'type' => 'say',
                         'send_type'=>'bj28',
                         'head_img_url' => $message_data['headimgurl'],
@@ -1641,6 +1660,7 @@ class WorkerJnd28Controller extends Server
 
                     $time_message = array(
                         'uid' => $connection->uid,
+                        'room'=>$message_data['room'],
                         'type' => 'admin',
                         'send_type'=>'bj28',
                         'head_img_url' => '/Public/main/img/kefu.jpg',
@@ -1654,11 +1674,12 @@ class WorkerJnd28Controller extends Server
                     $this->add_message($time_message,$type);/*添加信息*/
                 } else {
                     /*检测格式和金额*/
-                    $res = check_format_jnd($message_data['content'],$connection->uid);
+                    $res = check_format_jnd($message_data['content'],$connection->uid,$message_data['room']);
                     if ($res['error'] == 0) {
                         $error_message = array(
                             'uid' => $connection->uid,
                             'type' => 'say',
+                            'room'=>$message_data['room'],
                             'send_type'=>'bj28',
                             'head_img_url' => $message_data['headimgurl'],
                             'from_client_name' => $message_data['client_name'],
@@ -1673,6 +1694,7 @@ class WorkerJnd28Controller extends Server
                         $new_message = array(
                             'uid' => $connection->uid,
                             'type' => 'admin',
+                            'room'=>$message_data['room'],
                             'send_type'=>'bj28',
                             'head_img_url' => '/Public/main/img/kefu.jpg',
                             'from_client_name' => 'GM管理员',
@@ -1690,6 +1712,7 @@ class WorkerJnd28Controller extends Server
                             $points_error = array(
                                 'uid' => $connection->uid,
                                 'type' => 'say',
+                                'room'=>$message_data['room'],
                                 'send_type'=>'bj28',
                                 'head_img_url' => $message_data['headimgurl'],
                                 'from_client_name' => $message_data['client_name'],
@@ -1704,6 +1727,7 @@ class WorkerJnd28Controller extends Server
                             $points_tips = array(
                                 'uid' => $connection->uid,
                                 'type' => 'admin',
+                                'room'=>$message_data['room'],
                                 'send_type'=>'bj28',
                                 'head_img_url' => '/Public/main/img/kefu.jpg',
                                 'from_client_name' => 'GM管理员',
@@ -1719,6 +1743,7 @@ class WorkerJnd28Controller extends Server
                             $getbj28data = F('getbj28data');
                             $map['userid'] = $userid;
                             $map['type'] = $res['type'];
+                            $map['room'] = $message_data['room'];
                             $map['state'] = 1;
                             $map['is_add'] = 0;
                             $map['time'] = time();
@@ -1746,6 +1771,7 @@ class WorkerJnd28Controller extends Server
                                 $new_message2 = array(
                                     'uid' => $connection->uid,
                                     'type' => 'say',
+                                    'room'=>$message_data['room'],
                                     'send_type'=>'bj28',
                                     'head_img_url' => $message_data['headimgurl'],
                                     'from_client_name' => $message_data['client_name'],
@@ -1763,6 +1789,7 @@ class WorkerJnd28Controller extends Server
                                     $new_message1 = array(
                                         'uid' => $connection->uid,
                                         'type' => 'admin',
+                                        'room'=>$message_data['room'],
                                         'send_type'=>'bj28',
                                         'head_img_url' => '/Public/main/img/kefu.jpg',
                                         'from_client_name' => 'GM管理员',
@@ -1780,6 +1807,7 @@ class WorkerJnd28Controller extends Server
                         $format_error_message = array(
                             'uid' => $connection->uid,
                             'type' => 'say',
+                            'room'=>$message_data['room'],
                             'send_type'=>'bj28',
                             'head_img_url' => $message_data['headimgurl'],
                             'from_client_name' => $message_data['client_name'],
@@ -1793,6 +1821,7 @@ class WorkerJnd28Controller extends Server
                         $new_message3 = array(
                             'uid' => $connection->uid,
                             'type' => 'admin',
+                            'room'=>$message_data['room'],
                             'send_type'=>'bj28',
                             'head_img_url' => '/Public/main/img/kefu.jpg',
                             'from_client_name' => 'GM管理员',

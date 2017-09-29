@@ -15,6 +15,7 @@ class JndController extends BaseController
     public function index(){
         $data = session('user');
         $id = $data['id'];
+        $room=$_GET['T'];
 //        10期结果
         $list = M('dannumber')->where("game = 'Jnd28'")->order("id DESC")->limit(10)->select();
         // 创建SDK实例
@@ -36,8 +37,10 @@ class JndController extends BaseController
     }
     public function jincai(){
         //聊天信息
+        $room=$_GET['T'];
         $list = M('jndmessage')->order("id DESC")->limit(20)->select();
         $this->assign('list',$list);
+        $this->assign('room',$room);
         $this->display();
     }
     /*客服*/

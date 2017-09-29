@@ -9,50 +9,48 @@ class TestController extends Controller
 {
     public function index()
     {
-        $money = M('order')->where(array('number'=>843820,'userid'=>72))->sum('del_points');var_dump($money);exit;
-        $data = QueryList::Query('http://www.pc6777.com/jnd28/', array(
-            'time' => array('script:eq(2)', 'text'),
-            "currentqihao" => array('.kj_white_line:eq(1)', 'text'),
-        ))->data;
-        //获取时间
-        $str = $data[0]['time'];
-        $result = array();
-        preg_match_all("/(?:\()(.*)(?:\))/i", $str, $result);
-        $allnum = $result[1][0];
-        $resdata = explode(',', $allnum);
-        $all['time'] = $resdata[0];
-        //当前期号
-        $nowqihaoalldata = explode("u00a0", $data[0]['currentqihao']);
-        $nowqihao1 = explode(' ', $nowqihaoalldata[0]);
-        $nowqihao2 = explode("期", $nowqihao1[0]);
-        dump($nowqihao2[1]);
+        $jndxiazhujinetype1 =M('order')->query("SELECT SUM(del_points) AS sum_points FROM think_order WHERE  number = 847623 and type= 1 and state = 1 and userid = 72 and jincai like '小%'"); var_dump($jndxiazhujinetype1[0]['sum_points']);exit;
+        $type =  'update';
+        $result = S('jnd28data');
+        if($type == 'update'){
+            if (empty($result)) {
+                $url = "http://api.kaijiangtong.com/lottery/?name=jndklb&format=json3&uid=789423&token=1cd714ebb2c93a811fba7533a30d28fed7ccb7e1&num=1";
+                $result = curlGet($url);
+                S('jnd28data', $result, 5);
+            }
+            $data = json_decode($result, true);
+            $haoma = explode(',', $data[0]['cTermResult']);
+            $n1 = $haoma['1'] + $haoma['4'] + $haoma['7'] + $haoma['10'] + $haoma['13'] + $haoma['16'];
+            $n2 = $haoma['2'] + $haoma['5'] + $haoma['8'] + $haoma['11'] + $haoma['14'] + $haoma['17'];
+            $n3 = $haoma['3'] + $haoma['6'] + $haoma['9'] + $haoma['12'] + $haoma['15'] + $haoma['18'];
+            $num1 = str_split($n1);
+            $num2 = str_split($n2);
+            $num3 = str_split($n3);
+            $number1 = $num1[count($num1) - 1];
+            $number2 = $num2[count($num2) - 1];
+            $number3 = $num3[count($num3) - 1];
+            //传输的数据名称：
+            $jnddata['time'] = time();
+            $jnddata['game'] = 'jnd28';
+            $jnddata['current']['periodNumber'] = $data[0]['cTerm'];
+            $jnddata['current']['awardTime'] = $data[0]['cTermDT'];
+            $jnddata['current']['awardNumbers'] = $number1 . ',' . $number2 . ',' . $number3;
+            $jnddata['next']['periodNumber'] = $data[0]['cTerm'] + 1;
+            $jnddata['next']['awardTime'] = date("Y-m-d H:i:s", (strtotime($data[0]['cTermDT']) + 210));
+            $jnddata['next']['awardTimeInterval'] = ((strtotime($data[0]['cTermDT']) + 210) - time()) * 1000;
+            $jnddata['next']['delayTimeInterval'] = 0;
 
-        //计算下一期的开奖时间
-        $qianmian = explode(']', $nowqihao2[1]);
-        $riqi = explode('[', $qianmian[0]);
-        $fariqi = $riqi[1];
-        $awar = date("Y-m-d");
-        $shijianchuo = strtotime("$awar" . "$fariqi") + 200;
-        $zhuanhuaderiqi = date('Y:m:d H:i:s', $shijianchuo);
-
-        $all['currentqihao'] = $nowqihao2[0];
-        //当前号码
-        $nowhaoma = explode("]", $nowqihao1[0]);
-        $nowhaomaarr = explode('+', $nowhaoma[1]);
-        $testes = json_encode($nowhaomaarr[0]);
-        $afa = explode('u00a0', $testes);
-        $jjkd = preg_replace('/\D/s', '', $afa[2]);
-        $nowhaomaarr1 = $jjkd;
-        $nowhaomaarr2 = $nowhaomaarr[1];
-        $nowhaomaarr3 = $nowhaomaarr[2];
-        $all['currentnumber'] = $nowhaomaarr1 . ',' . $nowhaomaarr2 . ',' . $nowhaomaarr3;
-        //下一期
-        $all['nextqihao'] = $resdata[1];
-        $all['kaijiangshijain'] = 11;
-        $all = json_encode($all);
-//        return $all;
-        echo $all;
-
+            if ($result){
+                F('cachejnd',$jnddata);
+            }else{
+                $jnddata = F('cachejnd');
+            }
+            S('newcachejnd',$jnddata);
+        }else{
+            $jnddata = S('newcachejnd');
+            $jnddata['next']['awardTimeInterval'] = (strtotime($jnddata['next']['awardTime']) - time()) * 1000;
+            return $jnddata;
+        }
 
     }
 

@@ -7,6 +7,7 @@ class AutoController extends Controller
     public function index()
     {
         set_time_limit(0);
+        define(IS_AJAX,true);
         if (IS_AJAX){
             $this->kuai3();
             $this->jnd28js();
@@ -20,6 +21,7 @@ class AutoController extends Controller
         }
     }
     public function update(){
+
         if (IS_AJAX){
         getkuai3('update');
         getssc('update');
@@ -28,9 +30,10 @@ class AutoController extends Controller
         getPK10('update');
         }else{
         $this->display();
-        $data = $_SERVER["SERVER_NAME"] ;
+        $data = $_SERVER["SERVER_NAME"];
         $this->assign('severname',$data);
         }
+
     }
     public function jnd28js()
     {
